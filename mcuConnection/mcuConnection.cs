@@ -23,7 +23,7 @@ namespace mcuConnection
             McuMessage msg = new McuMessage(InstructionCodes.CreateConnection); //  create object for the response
             Byte[] respBuffer = new byte[256];
             
-            if (_client.Connected)
+            if (Connected)
             {
                 msg.Response = InstructionResponses.CreatedConnection;  //  mcu already connected, just say everything is ok
                 return msg;
@@ -31,13 +31,14 @@ namespace mcuConnection
             
             try
             {
-                _client = new TcpClient(_connectionInfo.ToString(), _connectionInfo.port);
+                _client = new TcpClient(_connectionInfo.ip.ToString(), _connectionInfo.port);
                 _connection = _client.GetStream();
                 _connection.Write(Encoding.ASCII.GetBytes(new char[]{Convert.ToChar(InstructionCodes.CreateConnection)}));
                 var bytes = _connection.Read(respBuffer,0,respBuffer.Length);
 
                 if (bytes > 1)
                 {
+                    Console.Error.WriteLine(Encoding.Default.GetString(respBuffer));
                     throw new Exception("response is larger than expected");    //  basically jump to the catch block
                     
                 } else if (Convert.ToByte(respBuffer[0]) == (byte) InstructionResponses.CreatedConnection)  //  mcu says connection is ok.
@@ -55,6 +56,13 @@ namespace mcuConnection
 
             Connected = true;
             return msg;
+        }
+
+        //  close the connection with the µ-c
+        public void Disconnect()
+        {
+            _connection.Close();
+            _client.Close();
         }
         
         //  send string to mcu, this is dangerous since this can have unpredictable behaviour
@@ -83,8 +91,7 @@ namespace mcuConnection
         {
             McuMessage msg = new McuMessage(code);
             byte[] respBuffer = new byte[256];
-            Int32 test = 0;
-            
+
             if (_client.Connected)
             {
                 try
@@ -150,11 +157,14 @@ namespace mcuConnection
         }
         */
         
-        //  deconstructor that closes the connection.
+        //  deconstructor that closes the connection, if that hasn't yet happened
         ~McuConnection()
         {
-            _connection.Close();
-            _client.Close();
+            if (_client.Connected || _client.Client.Connected)
+            {
+                _connection.Close();
+                _client.Close();
+            }
         }
     }
 }
