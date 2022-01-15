@@ -114,49 +114,6 @@ namespace mcuConnection
             return msg;
         }
         
-        /*
-        public string send_and_recv(string msg)
-        {
-            Byte[] msgAscii = Encoding.ASCII.GetBytes(msg);
-            Byte[] responseAscii = new byte[256];
-
-
-            if (_client.Connected)
-            {
-                string response_string;
-                _connection.Write(msgAscii, 0, msgAscii.Length);
-                var bytes = _connection.Read(responseAscii, 0, responseAscii.Length);
-                response_string = Encoding.ASCII.GetString(responseAscii, 0, bytes);
-                return response_string;
-            }
-            else
-            {
-                return "client has disconnected";
-            }
-        }
-
-
-        public void manual_mode()
-        {
-            while (true)
-            {
-                string input;
-                Console.WriteLine("What do you want to send");
-                input = Console.ReadLine();
-                if (input == "")
-                {
-                    break;
-                }
-
-                Console.WriteLine(send_and_recv(input));
-            }
-
-            Console.WriteLine("Closed Connection");
-            _connection.Close();
-            _client.Close();
-        }
-        */
-        
         //  deconstructor that closes the connection, if that hasn't yet happened
         ~McuConnection()
         {

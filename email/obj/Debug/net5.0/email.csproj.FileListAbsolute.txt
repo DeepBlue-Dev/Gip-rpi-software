@@ -1,0 +1,15 @@
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.deps.json
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\ref\email.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\Configurations.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\Configurations.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.csproj.AssemblyReference.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.AssemblyInfoInputs.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.AssemblyInfo.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.csproj.CoreCompileInputs.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.csproj.CopyComplete
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\ref\email.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.pdb
