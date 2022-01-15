@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{4108ACFB-ACDD-4F9A-8E65-2F7E13A786F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tcp", "tcp", "{49CD3154-662B-417F-B73B-9D260E73E01E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcuConnection", "mcuConnection\mcuConnection.csproj", "{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tcpFunctionsTesting", "tcpFunctionsTesting\tcpFunctionsTesting.csproj", "{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49CD3154-662B-417F-B73B-9D260E73E01E} = {4108ACFB-ACDD-4F9A-8E65-2F7E13A786F2}
+		{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D} = {49CD3154-662B-417F-B73B-9D260E73E01E}
+		{7A647445-6D32-4548-9B7B-6EAC3E9B25B3} = {49CD3154-662B-417F-B73B-9D260E73E01E}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "k9vrNRkHg/HMx3mQ/xjCcd40nt8urXQtYV1bE1AqBmVbyixTiAbjTVEuilK1hwRR09hm2/S6DzkTm7lxHivpEA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\mcuConnection\\mcuConnection.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\arthu\\.nuget\\packages\\serilog\\2.11.0-dev-01377\\serilog.2.11.0-dev-01377.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\serilog.sinks.console\\4.0.2-dev-00890\\serilog.sinks.console.4.0.2-dev-00890.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\serilog.sinks.file\\5.0.1-dev-00947\\serilog.sinks.file.5.0.1-dev-00947.nupkg.sha512"
+  ],
+  "logs": []
+}
