@@ -20,3 +20,11 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\obj\Debug\ne
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\obj\Debug\net5.0\ref\tcpFunctionsTesting.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\obj\Debug\net5.0\tcpFunctionsTesting.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\obj\Debug\net5.0\tcpFunctionsTesting.genruntimeconfig.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\MailKit.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\MimeKit.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Configurations.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Configurations.pdb

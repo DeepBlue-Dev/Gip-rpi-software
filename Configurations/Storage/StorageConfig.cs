@@ -6,6 +6,6 @@ namespace Configurations.Storage
             System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? string.Empty, "Configs\\");
 
         public static string EmailConfigurationName = "EmailConfiguration.json";
-        
+        public static string McuConnectionConfigurationName = "McuConnectionConfiguration.json";
     }
 }

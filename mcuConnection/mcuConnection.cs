@@ -2,6 +2,8 @@
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
+using Configurations.McuConnectionConfiguration;
+using Configurations;
 
 namespace mcuConnection
 {
@@ -11,6 +13,7 @@ namespace mcuConnection
         private TcpClient _client;
         private NetworkStream _connection;
         private readonly (IPAddress ip, int port) _connectionInfo;
+        
 
         public McuConnection((IPAddress ip, int port) connInfo)
         {
@@ -18,6 +21,19 @@ namespace mcuConnection
             _connectionInfo.port = connInfo.port;
         }
 
+        public McuConnection(McuConnectionConfig connectionConfig)
+        {
+            _connectionInfo.ip = connectionConfig.McuSocket.ip;
+            _connectionInfo.port = connectionConfig.McuSocket.port;
+        }
+
+        public McuConnection()
+        {
+            ConfigurationManager manager = new ConfigurationManager();
+            McuConnectionConfig connectionConfig = manager.ReadConfig<McuConnectionConfig>(new McuConnectionConfig());
+            _connectionInfo.ip = connectionConfig.McuSocket.ip;
+            _connectionInfo.port = connectionConfig.McuSocket.port;
+        }
         public McuMessage Connect()
         {
             McuMessage msg = new McuMessage(InstructionCodes.CreateConnection); //  create object for the response

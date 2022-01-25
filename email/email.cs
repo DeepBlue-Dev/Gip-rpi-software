@@ -1,8 +1,8 @@
 ﻿using System;
 using MailKit.Net.Smtp;
 using MimeKit;
-using Configurations.EmailConfiguration;
-using Configurations;
+using Configurations.McuConnectionConfiguration.EmailConfiguration;
+using Configurations.McuConnectionConfiguration;
 
 namespace email
 {
@@ -28,10 +28,20 @@ namespace email
                 Text = "this is a test, you can skip it"
             };
 
-            using (SmtpClient client = new SmtpClient())
+            try
             {
-                client.Connect(_configuration.MailServer, _configuration.MailServerPort, _configuration.UseSecureSocketOptions);
-                client.Authenticate(Environment.GetEnvironmentVariable("Authentication").ToString());
+                using (SmtpClient client = new SmtpClient())
+                {
+                    client.Connect(_configuration.MailServer, _configuration.MailServerPort,
+                        _configuration.UseSecureSocketOptions);
+                    client.Authenticate(Environment.GetEnvironmentVariable("Authentication").ToString(),
+                        _configuration.Sender);
+                    client.Send(msg);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Console.Error.WriteLine("Nullreference exception because of env variable that is not present"); //  catch the possible nullref exc
             }
         }
     }
