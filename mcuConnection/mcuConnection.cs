@@ -122,8 +122,11 @@ namespace mcuConnection
                 }
                 catch (Exception e)
                 {
+                    
                     msg.ErrorResponse = e.Message;
                     Console.Error.WriteLine(e.Message);
+                    Console.WriteLine("I");
+                    throw new Exception(e.ToString());
                     return msg;
                 }
             }

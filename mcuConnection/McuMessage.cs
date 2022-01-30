@@ -31,7 +31,6 @@ namespace mcuConnection
             {
                 return Request.ToCharArray() ;
             }
-            
             return new char[] { };  //  TODO test if this can cause unexpected behaviour
         }
         
@@ -40,7 +39,7 @@ namespace mcuConnection
         {
             if (_opcode is not InstructionCodes.Nop)
             {
-                return new char[] {Convert.ToChar(_opcode.ToString())};
+                return new char[] {Convert.ToChar(_opcode)};
             }
 
             return new char[] { };  //  TODO test if this can cause unexpected behaviour
