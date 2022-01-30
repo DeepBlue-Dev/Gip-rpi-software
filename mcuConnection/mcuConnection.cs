@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using Configurations.McuConnectionConfiguration;
 using Configurations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace mcuConnection
 {
@@ -112,12 +115,13 @@ namespace mcuConnection
             {
                 try
                 {
-                    _connection.Write(System.Text.Encoding.ASCII.GetBytes(msg.OpCodeToCharArray()));
+                    _connection.Write(Encoding.ASCII.GetBytes(msg.OpCodeToCharArray()));
                     var bytes = _connection.Read(respBuffer, 0, respBuffer.Length);
-
+                    
                     if (code is InstructionCodes.GetCalibrationResult or InstructionCodes.GetTotalCapacity or InstructionCodes.GetRemainingBatteryCharge)
                     {
-                        msg.ParsedData[0] = BitConverter.ToUInt32(respBuffer[..5]); //  TODO verify this, and keep up to date with comm with mcu
+                        msg.ParsedData =  BitConverter.ToUInt32((respBuffer[1..18]),0); //  TODO verify this, and keep up to date with comm with mcu
+
                     }
                 }
                 catch (Exception e)
@@ -125,12 +129,40 @@ namespace mcuConnection
                     
                     msg.ErrorResponse = e.Message;
                     Console.Error.WriteLine(e.Message);
-                    Console.WriteLine("I");
                     throw new Exception(e.ToString());
-                    return msg;
                 }
+                
             }
             return msg;
+        }
+
+        public string Receive()
+        {
+           
+            byte[] respBuffer = new byte[256];
+
+            if (_client.Connected)
+            {
+                try
+                {
+                    
+                    var bytes = _connection.Read(respBuffer, 0, 11);
+                    for (int x = 1; x < 64; x++)
+                    {
+                        Console.Write(respBuffer[x]);
+                    }
+                    
+
+                    return string.Empty;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(e.Message);
+                    throw new Exception(e.ToString());
+                }
+                
+            }
+            return null;
         }
         
         //  deconstructor that closes the connection, if that hasn't yet happened

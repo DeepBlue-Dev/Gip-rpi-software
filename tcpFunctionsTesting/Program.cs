@@ -21,6 +21,7 @@ namespace tcpFunctionsTesting
                 Console.WriteLine(resp.ErrorResponse);
             }
 
+            
             while (true)
             {
                 string input = Console.ReadLine();
@@ -30,7 +31,13 @@ namespace tcpFunctionsTesting
                 } else if (input[0] is 'u')
                 {
                     connection.SendInstructionCode(InstructionCodes.UnlockHandBrake);
-                } else if (input[0] is 'q')
+                } else if (input[0] == 's')
+                {
+                    Console.WriteLine(connection.SendInstructionCode(InstructionCodes.GetRemainingBatteryCharge).ParsedData);
+                } else if (input[0] == 'd')
+                {
+                    Console.WriteLine(connection.Receive());
+                }else if (input[0] is 'q')
                 {
                     connection.Disconnect();
                     break;
