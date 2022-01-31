@@ -10,7 +10,7 @@ namespace mcuConnection
         public string ErrorResponse = String.Empty; //  the error response, if an error occurred 
         public readonly string Request;    //  the message that was sent
         private readonly InstructionCodes _opcode = InstructionCodes.Nop;     //  the opcode that was sent
-        public uint ParsedData;
+        public string ParsedData;
 
         //  Constructor with a string request
         public McuMessage(string request)

@@ -83,7 +83,7 @@ namespace mcuConnection
             _connection.Close();
             _client.Close();
         }
-        
+
         //  send string to mcu, this is dangerous since this can have unpredictable behaviour
         public TcpResponseCode SendString(string msg)
         {
@@ -116,11 +116,12 @@ namespace mcuConnection
                 try
                 {
                     _connection.Write(Encoding.ASCII.GetBytes(msg.OpCodeToCharArray()));
-                    var bytes = _connection.Read(respBuffer, 0, respBuffer.Length);
+                    //var bytes = _connection.Read(respBuffer, 0, respBuffer.Length);
                     
                     if (code is InstructionCodes.GetCalibrationResult or InstructionCodes.GetTotalCapacity or InstructionCodes.GetRemainingBatteryCharge)
                     {
-                        msg.ParsedData =  BitConverter.ToUInt32((respBuffer[1..18]),0); //  TODO verify this, and keep up to date with comm with mcu
+
+                        msg.ParsedData = Receive(); //  TODO verify this, and keep up to date with comm with mcu
 
                     }
                 }
@@ -145,24 +146,26 @@ namespace mcuConnection
             {
                 try
                 {
+                    int responseByte = 0; //  byte that will store the response
+                    int index = 0;
                     
-                    var bytes = _connection.Read(respBuffer, 0, 11);
-                    for (int x = 1; x < 64; x++)
+                    do
                     {
-                        Console.Write(respBuffer[x]);
-                    }
-                    
+                        responseByte = _connection.ReadByte();
+                        respBuffer[index] = Convert.ToByte(responseByte);
+                        index++;
 
-                    return string.Empty;
+                    } while (responseByte is not -1 && ((char)responseByte) is not '\0');   //  do not stop reading untill we read a string termination or 'til the end of the stream
+
+                    return Encoding.ASCII.GetString(respBuffer);
                 }
                 catch (Exception e)
                 {
                     Console.Error.WriteLine(e.Message);
                     throw new Exception(e.ToString());
                 }
-                
             }
-            return null;
+            return String.Empty;    
         }
         
         //  deconstructor that closes the connection, if that hasn't yet happened
