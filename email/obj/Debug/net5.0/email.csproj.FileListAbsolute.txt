@@ -1,6 +1,5 @@
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.deps.json
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.dll
-C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\ref\email.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\email.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\Configurations.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\bin\Debug\net5.0\Configurations.pdb
@@ -13,3 +12,4 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.csp
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\ref\email.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\email.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\email\obj\Debug\net5.0\refint\email.dll

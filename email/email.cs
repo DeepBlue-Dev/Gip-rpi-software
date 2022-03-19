@@ -1,8 +1,8 @@
 ﻿using System;
 using MailKit.Net.Smtp;
 using MimeKit;
-using Configurations.McuConnectionConfiguration.EmailConfiguration;
-using Configurations.McuConnectionConfiguration;
+using Configurations.EmailConfiguration;
+using Configurations;
 
 namespace email
 {
@@ -34,8 +34,8 @@ namespace email
                 {
                     client.Connect(_configuration.MailServer, _configuration.MailServerPort,
                         _configuration.UseSecureSocketOptions);
-                    client.Authenticate(Environment.GetEnvironmentVariable("Authentication").ToString(),
-                        _configuration.Sender);
+                    client.Authenticate(_configuration.Sender.ToString(), Environment.GetEnvironmentVariable("Authentication").ToString());
+                    
                     client.Send(msg);
                 }
             }
