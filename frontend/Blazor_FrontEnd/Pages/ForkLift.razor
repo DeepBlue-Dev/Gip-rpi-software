@@ -1,0 +1,48 @@
+﻿@page "/Forklift"
+
+<h1>Heftruck status</h1>
+<br />
+<h3>Batterijniveau</h3> 
+<label for="batteryGauge">Resterende lading ( @percentage %): </label>
+<meter style="width:80%;" id="batteryGauge" min="0" max="100" value="@percentage"></meter>
+
+<hr />
+
+<h3>Handrem</h3>
+<br />
+@if (handbrakeActivated)
+{
+    <p style="color:forestgreen">Handrem geactiveerd</p>
+} else
+{
+    <p style="color:firebrick">Handrem gedeactiveerd</p>
+}
+
+<br />
+<label for="handbrakeToggle">Handrem: </label>
+<input type="checkbox" value="@handbrakeActivated" data-toggle="toggle" data-on="aan" data-off="uit" data-onstyle="success" data-offstyle="danger">
+<hr />
+
+
+
+@code {
+    private float percentage;
+    private bool handbrakeActivated = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        percentage = 100F;
+        var timer = new System.Threading.Timer((_) =>
+        {
+            InvokeAsync(async () =>
+            {
+                percentage -= (percentage > 0)?5F:0;   //  create real updater
+                StateHasChanged();  //  re-render the component
+            });
+
+        }, null, 0, 1000);
+    }
+
+}

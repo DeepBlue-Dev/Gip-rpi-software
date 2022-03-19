@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Blazor_FrontEnd.Pages.Settings
+namespace Blazor_FrontEnd.Pages
 {
     #line hidden
     using System;
@@ -82,15 +82,8 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
-using System.ComponentModel.DataAnnotations;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/settings/email")]
-    public partial class Email : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Forklift")]
+    public partial class ForkLift : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,23 +91,25 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 28 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
        
-    private string addedEmail;
-    private List<string> Adresses = new();
-    private ElementReference emailInputField_ref;
+    private float percentage;
+    private bool handbrakeActivated = false;
 
-    private void AddToList()
+
+    protected override async Task OnInitializedAsync()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        base.OnInitialized();
+        percentage = 100F;
+        var timer = new System.Threading.Timer((_) =>
         {
-            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            InvokeAsync(async () =>
             {
-                Adresses.Add(addedEmail);  
-            }
+                percentage -= (percentage > 0)?5F:0;   //  create real updater
+                StateHasChanged();  //  re-render the component
+            });
 
-        }
-        addedEmail = null; 
+        }, null, 0, 1000);
     }
 
 

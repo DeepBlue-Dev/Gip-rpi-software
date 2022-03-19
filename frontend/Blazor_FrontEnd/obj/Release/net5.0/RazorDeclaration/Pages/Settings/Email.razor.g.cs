@@ -82,6 +82,13 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/email")]
     public partial class Email : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -90,6 +97,30 @@ using Blazor_FrontEnd.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+       
+    private string addedEmail;
+    private List<string> Adresses = new();
+    private ElementReference emailInputField_ref;
+
+    private void AddToList()
+    {
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        {
+            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            {
+                Adresses.Add(addedEmail);  
+            }
+
+        }
+        addedEmail = null; 
+    }
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

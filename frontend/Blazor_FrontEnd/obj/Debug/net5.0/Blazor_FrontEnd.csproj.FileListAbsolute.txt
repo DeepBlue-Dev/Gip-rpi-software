@@ -17,7 +17,6 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Deb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Blazor_FrontEnd.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Blazor_FrontEnd.RazorComponent.input.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
@@ -30,7 +29,6 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Deb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Blazor_FrontEnd.TagHelpers.output.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Blazor_FrontEnd.RazorCoreGenerate.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
@@ -58,3 +56,6 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Deb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Blazor_FrontEnd.csproj.CopyComplete
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\Settings\Email.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\Settings\Email.razor.g.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\ForkLift.razor.g.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\ForkLift.razor.g.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\libman.json
