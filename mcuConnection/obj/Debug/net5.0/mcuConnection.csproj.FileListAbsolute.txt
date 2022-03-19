@@ -1,6 +1,5 @@
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\mcuConnection.deps.json
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\mcuConnection.dll
-C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\ref\mcuConnection.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\mcuConnection.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\obj\Debug\net5.0\mcuConnection.csproj.AssemblyReference.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\obj\Debug\net5.0\mcuConnection.GeneratedMSBuildEditorConfig.editorconfig
@@ -13,3 +12,4 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\obj\Debug\net5.0\m
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\Configurations.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\bin\Debug\net5.0\Configurations.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\obj\Debug\net5.0\mcuConnection.csproj.CopyComplete
+C:\Users\arthu\Documents\Rider Projects\gip rpi\mcuConnection\obj\Debug\net5.0\refint\mcuConnection.dll
