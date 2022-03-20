@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Blazor_FrontEnd.Shared
+namespace Blazor_FrontEnd.Pages.Settings
 {
     #line hidden
     using System;
@@ -82,7 +82,8 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/settings/connection")]
+    public partial class Connection : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,18 +91,10 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Shared\NavMenu.razor"
+#line 47 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
        
-    private bool collapseNavMenu = true;
-    private bool collapseSubNav = true;
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-
+    private bool Connected = true;
+    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
 
 #line default
 #line hidden
