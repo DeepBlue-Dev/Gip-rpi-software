@@ -90,7 +90,7 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Shared\NavMenu.razor"
+#line 50 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
     private bool collapseSubNav = true;

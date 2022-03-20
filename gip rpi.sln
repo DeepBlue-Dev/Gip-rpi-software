@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{4108
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tcp", "tcp", "{49CD3154-662B-417F-B73B-9D260E73E01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcuConnection", "mcuConnection\mcuConnection.csproj", "{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mcuConnection", "mcuConnection\mcuConnection.csproj", "{EB6DB2E2-9EA4-48F3-BADB-0F6B5F5E8A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tcpFunctionsTesting", "tcpFunctionsTesting\tcpFunctionsTesting.csproj", "{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tcpFunctionsTesting", "tcpFunctionsTesting\tcpFunctionsTesting.csproj", "{7A647445-6D32-4548-9B7B-6EAC3E9B25B3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "smtp", "smtp", "{60206796-B893-4FCF-9093-2A9D1F8A8581}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "email", "email\email.csproj", "{8C7E61C9-304C-4FB3-AEE9-8FCF5E5CA428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "email", "email\email.csproj", "{8C7E61C9-304C-4FB3-AEE9-8FCF5E5CA428}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{1C6FC5B8-C120-4425-AD72-FB3FE2A19ED8}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configurations", "Configura
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{E9146F26-EDB2-4ABA-A410-9E3F2C251238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor_FrontEnd", "frontend\Blazor_FrontEnd\Blazor_FrontEnd.csproj", "{2586C66E-8B50-44DB-A986-A38E9B66B735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_FrontEnd", "frontend\Blazor_FrontEnd\Blazor_FrontEnd.csproj", "{2586C66E-8B50-44DB-A986-A38E9B66B735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

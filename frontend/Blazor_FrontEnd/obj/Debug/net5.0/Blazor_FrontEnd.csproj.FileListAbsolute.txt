@@ -59,3 +59,5 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Deb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\ForkLift.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\ForkLift.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\libman.json
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\RazorDeclaration\Pages\Settings\Battery.razor.g.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\Settings\Battery.razor.g.cs

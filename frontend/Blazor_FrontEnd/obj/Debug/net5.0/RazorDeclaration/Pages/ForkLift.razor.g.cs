@@ -91,7 +91,7 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+#line 29 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
        
     private float percentage;
     private bool handbrakeActivated = false;
