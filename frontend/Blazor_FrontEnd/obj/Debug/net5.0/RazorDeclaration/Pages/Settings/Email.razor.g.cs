@@ -98,7 +98,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 32 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
     private string addedEmail;
     private List<string> Adresses = new();
