@@ -1,0 +1,50 @@
+﻿@page "/settings/email"
+@using System.ComponentModel.DataAnnotations;
+
+<h3>Email adressen</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Emails</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- add the logic for the data fetching-->
+        @foreach(var addr in Adresses)
+        {
+            <tr>
+                <td>@addr.ToString()</td>
+                <td>remove</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<form @onsubmit=@AddToList>
+    <label for="emailInput"> Voeg een email toe</label>
+    <input @bind="addedEmail" id="emailInput" @ref="emailInputField_ref"/>
+</form>
+<br />
+<hr />
+
+
+@code {
+    private string addedEmail;
+    private List<string> Adresses = new();
+    private ElementReference emailInputField_ref;
+
+    private void AddToList()
+    {
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        {
+            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            {
+                Adresses.Add(addedEmail);  
+            }
+
+        }
+        addedEmail = null; 
+    }
+
+}
