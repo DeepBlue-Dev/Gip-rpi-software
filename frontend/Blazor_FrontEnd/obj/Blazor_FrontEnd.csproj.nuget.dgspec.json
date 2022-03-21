@@ -4,6 +4,70 @@
     "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj": {}
   },
   "projects": {
+    "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj",
+        "projectName": "Configurations",
+        "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj",
+        "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\arthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +91,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj": {
+                "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
