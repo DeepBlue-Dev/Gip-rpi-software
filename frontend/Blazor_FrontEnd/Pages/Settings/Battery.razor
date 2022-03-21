@@ -1,0 +1,25 @@
+﻿@page "/settings/battery"
+<h3>Batterij instellingen</h3>
+<br />
+<hr />
+<h5>Huidig waarschuwingsniveau: @warningLevel %</h5>
+<br />
+<form @onsubmit=@ChangeWarningLevel>
+    <label for="warningLevelInput">Verander het waarschuwings niveau: </label>
+    <input @bind="newWarningLevel" id="warningLevelInput"/>
+</form>
+<br />
+<hr />
+
+@code {
+    private float warningLevel = 40F;
+    private float? newWarningLevel = null;
+    private void ChangeWarningLevel()
+    {
+        if(newWarningLevel > 0 && newWarningLevel < 100 && newWarningLevel is not null)
+        {
+            warningLevel = (float)newWarningLevel;
+        }
+        newWarningLevel = null;
+    }
+}

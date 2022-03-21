@@ -3,7 +3,6 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\ne
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\tcpFunctionsTesting.runtimeconfig.json
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\tcpFunctionsTesting.runtimeconfig.dev.json
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\tcpFunctionsTesting.dll
-C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\ref\tcpFunctionsTesting.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\tcpFunctionsTesting.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Serilog.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Serilog.Sinks.Console.dll
@@ -28,3 +27,4 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\ne
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Configurations.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\bin\Debug\net5.0\Configurations.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\tcpFunctionsTesting\obj\Debug\net5.0\refint\tcpFunctionsTesting.dll

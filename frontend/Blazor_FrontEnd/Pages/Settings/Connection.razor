@@ -1,0 +1,50 @@
+﻿@page "/settings/connection"
+<h3>Verbinding</h3>
+<br />
+<hr />
+@if (Connected)
+{
+   <h5>Actieve Verbinding</h5>
+   <table class="table">
+       <thead>
+           <tr>
+               <th>ip adres</th>
+               <th>poortnummer</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr>
+               <td>@iPEndPoint.Address</td>
+               <td>@iPEndPoint.Port</td>
+           </tr>
+       </tbody>
+    </table>
+} else
+{
+    <h5 style="color:firebrick">Geen actieve verbinding</h5>
+}
+
+
+<br />
+<hr />
+<h5>Opgeslagen verbindingen</h5>
+<table class="table">
+       <thead>
+           <tr>
+               <th>ip adres</th>
+               <th>poortnummer</th>
+           </tr>
+       </thead>
+       <tbody>
+           <tr>
+               <td>@iPEndPoint.Address</td>
+               <td>@iPEndPoint.Port</td>
+           </tr>
+       </tbody>
+    </table>
+<br />
+<hr />
+@code {
+    private bool Connected = true;
+    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
+}
