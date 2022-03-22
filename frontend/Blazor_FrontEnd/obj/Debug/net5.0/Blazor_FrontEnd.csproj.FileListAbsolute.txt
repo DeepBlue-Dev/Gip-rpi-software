@@ -65,3 +65,7 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Deb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\obj\Debug\net5.0\Razor\Pages\Settings\Connection.razor.g.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\Configurations.dll
 C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\Configurations.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\MailKit.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\MimeKit.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\bin\Debug\net5.0\BouncyCastle.Crypto.dll
