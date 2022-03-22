@@ -1,5 +1,9 @@
 ﻿@page "/settings/email"
+
 @using System.ComponentModel.DataAnnotations;
+@using Blazor_FrontEnd.Data;
+
+@inject EmailsService emailService;
 
 <h3>Email adressen</h3>
 
@@ -10,41 +14,61 @@
         </tr>
     </thead>
     <tbody>
-        <!-- add the logic for the data fetching-->
-        @foreach(var addr in Adresses)
+        @if (Emails.Item2 is not null && Emails.Item1.Count is not 0)
+        {
+            foreach (var addr in Emails.Item1)
+            {
+                <tr>
+                    <td>@addr.ToString()</td>
+                    <td>remove</td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@addr.ToString()</td>
-                <td>remove</td>
+                <td><h5 style="color:firebrick">@Emails.Item2</h5></td>
             </tr>
         }
+
     </tbody>
 </table>
 <br />
-<form @onsubmit=@AddToList>
+<form @onsubmit=@AddToTable>
     <label for="emailInput"> Voeg een email toe</label>
-    <input @bind="addedEmail" id="emailInput" @ref="emailInputField_ref"/>
+    <input @bind="addedEmail" id="emailInput" />
 </form>
+
 <br />
 <hr />
 
 
 @code {
-    private string addedEmail;
-    private List<string> Adresses = new();
-    private ElementReference emailInputField_ref;
+    private string? addedEmail;
+    private (List<string>, string?) Emails;
 
-    private void AddToList()
+    private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !Emails.Item1.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
-            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Adresses.Add(addedEmail);  
+                Emails.Item1.Add(addedEmail);
+                if(await Task.Run(() => emailService.UpdateEmails(Emails.Item1)) is not null)
+                {
+                    Console.WriteLine(emailService.UpdateEmails(Emails.Item1).Result);
+                }
+                
             }
-
         }
-        addedEmail = null; 
+        addedEmail = null;
     }
 
+    //  on initialized page
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("initialized base");
+        Emails = await Task.Run(() => emailService.GetStoredEmails());    
+    }
+    
 }

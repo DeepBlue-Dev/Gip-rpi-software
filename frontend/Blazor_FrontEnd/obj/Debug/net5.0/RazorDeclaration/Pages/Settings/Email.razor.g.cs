@@ -83,8 +83,15 @@ using Blazor_FrontEnd.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
 using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+using Blazor_FrontEnd.Data;
 
 #line default
 #line hidden
@@ -98,29 +105,40 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 46 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
-    private string addedEmail;
-    private List<string> Adresses = new();
-    private ElementReference emailInputField_ref;
+    private string? addedEmail;
+    private (List<string>, string?) Emails;
 
-    private void AddToList()
+    private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !Emails.Item1.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
-            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Adresses.Add(addedEmail);  
+                Emails.Item1.Add(addedEmail);
+                if(await Task.Run(() => emailService.UpdateEmails(Emails.Item1)) is not null)
+                {
+                    Console.WriteLine(emailService.UpdateEmails(Emails.Item1).Result);
+                }
+                
             }
-
         }
-        addedEmail = null; 
+        addedEmail = null;
     }
 
+    //  on initialized page
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("initialized base");
+        Emails = await Task.Run(() => emailService.GetStoredEmails());    
+    }
+    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private EmailsService emailService { get; set; }
     }
 }
 #pragma warning restore 1591

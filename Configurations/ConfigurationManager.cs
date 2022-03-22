@@ -16,12 +16,16 @@ namespace Configurations
             File.WriteAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName),parser.ObjectToJson(obj));
         }
         
-        //  TODO, test this function, since this could allow a safer and easier way to read configs from file without fucking names up
         public T ReadConfig<T>(T obj) where T : IParsable
         {
             JsonParser parser = new JsonParser();
             return parser.JsonToObject<T>(
                 File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
+        }
+
+        public void ReadConfigEX<T>(T obj) where T : IParsable
+        {
+            new JsonParser().JsonToObjectEX(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)), obj);
         }
 
         public T ReadConfig<T>([NotNull] string configurationFileName) where T : IParsable

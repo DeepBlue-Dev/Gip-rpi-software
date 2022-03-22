@@ -12,6 +12,11 @@ namespace Configurations.Storage
             return JsonConvert.DeserializeObject<T>(json);
         }
 
+        public void JsonToObjectEX<T>([NotNull]string json, T obj) where T : IParsable  //  EXPERIMENTAL
+        {
+             JsonConvert.PopulateObject(json, obj);
+        }
+
         public string ObjectToJson<T>([NotNull]T obj) where T : IParsable
         {
             return JsonConvert.SerializeObject(obj);

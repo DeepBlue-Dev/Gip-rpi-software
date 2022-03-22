@@ -8,16 +8,18 @@ namespace Blazor_FrontEnd.Data
 {
     public class EmailsService
     {
-        private List<string> _emails;
         ConfigurationManager manager = new ConfigurationManager();
 
         public Task<(List<string>, string?)> GetStoredEmails()
         {
-
-
             try
             {
-                return Task.FromResult<(List<string>,string?)>((manager.ReadConfig<EmailConfiguration>(new EmailConfiguration()).Recipients.ConvertAll(adress => adress.ToString()), null));
+                EmailConfiguration conf = manager.ReadConfig<EmailConfiguration>(new EmailConfiguration());
+                if(conf is null || conf.Recipients.Count == 0)
+                {
+                    throw new Exception("No recipients in configuration file");
+                }
+                return Task.FromResult<(List<string>,string?)>((conf.Recipients.ConvertAll(adress => adress.ToString()), null));
             }
             catch (Exception ex)
             {
@@ -30,8 +32,9 @@ namespace Blazor_FrontEnd.Data
         {
             try
             {
-                EmailConfiguration conf = manager.ReadConfig<EmailConfiguration>(new EmailConfiguration());
-                conf.Recipients = updatedEmails.ConvertAll(adress => MimeKit.MailboxAddress.Parse(adress));
+                EmailConfiguration conf = new EmailConfiguration();
+                manager.ReadConfigEX<EmailConfiguration>(conf);
+                conf.Recipients.AddRange(updatedEmails.ConvertAll(adress => MimeKit.MailboxAddress.Parse(adress)));
                 manager.WriteConfig<EmailConfiguration>(conf);
                 return Task.FromResult<string?>(null);
             }catch (Exception ex)
