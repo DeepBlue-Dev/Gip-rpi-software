@@ -9,6 +9,17 @@ namespace Configurations
 {
     public class ConfigurationManager
     {
+        private bool CheckIfConfigurationExists<T>(bool CreateFile, T obj) where T : IParsable
+        {
+            if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){
+                if (!CreateFile) { return false; }
+                File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));
+                return true;
+            } else
+            {
+                return true;
+            }
+        }
         //  writes a config to disk, if it doesnt exist, it will make a config file
         public void WriteConfig<T>([NotNull]T obj) where T : IParsable
         {
