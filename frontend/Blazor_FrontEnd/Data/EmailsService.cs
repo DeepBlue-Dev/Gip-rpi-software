@@ -14,7 +14,9 @@ namespace Blazor_FrontEnd.Data
         {
             try
             {
-                EmailConfiguration conf = manager.ReadConfig<EmailConfiguration>(new EmailConfiguration());
+                EmailConfiguration conf = new EmailConfiguration();
+                manager.ReadConfigEX<EmailConfiguration>(conf);
+                if(conf is null) { throw new Exception("conf was null"); }
                 if(conf is null || conf.Recipients.Count == 0)
                 {
                     throw new Exception("No recipients in configuration file");
@@ -34,7 +36,7 @@ namespace Blazor_FrontEnd.Data
             {
                 EmailConfiguration conf = new EmailConfiguration();
                 manager.ReadConfigEX<EmailConfiguration>(conf);
-                conf.Recipients.AddRange(updatedEmails.ConvertAll(adress => MimeKit.MailboxAddress.Parse(adress)));
+                conf.Recipients.AddRange(updatedEmails);
                 manager.WriteConfig<EmailConfiguration>(conf);
                 return Task.FromResult<string?>(null);
             }catch (Exception ex)

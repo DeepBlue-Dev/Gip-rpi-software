@@ -147,7 +147,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MailKit": "3.1.0",
+          "MailKit": "3.1.1",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -601,5 +601,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: MailKit from 3.1.1 to 3.1.0. Reference the package directly from the project to select a different version. \r\n email -> Configurations -> MailKit (>= 3.1.1) \r\n email -> MailKit (>= 3.1.0)",
+      "libraryId": "MailKit",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

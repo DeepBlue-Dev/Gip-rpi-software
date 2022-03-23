@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "MailKit/3.1.0": {
+      "MailKit/3.1.1": {
         "type": "package",
         "dependencies": {
-          "MimeKit": "3.1.0"
+          "MimeKit": "3.1.1"
         },
         "compile": {
           "lib/net5.0/MailKit.dll": {}
@@ -14,7 +14,7 @@
           "lib/net5.0/MailKit.dll": {}
         }
       },
-      "MimeKit/3.1.0": {
+      "MimeKit/3.1.1": {
         "type": "package",
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
@@ -128,7 +128,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MailKit": "3.1.0",
+          "MailKit": "3.1.1",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -141,10 +141,10 @@
     }
   },
   "libraries": {
-    "MailKit/3.1.0": {
-      "sha512": "rTK4aBvNbJ+G+dB3W9C3J9EzdD3rt9A4863zjgnI+I1I//LwIZf83b0RKRZEmBFTScVARXFY25cXjS/7lUKcdg==",
+    "MailKit/3.1.1": {
+      "sha512": "NprdMF0ABNWOqQUuqz45X5YkJK6f3vtYwwvqR6nGVdmrZ7HkahNbSATpOZ5Rj3W1cgDGf/iD8vs/oCyZ4wUO7g==",
       "type": "package",
-      "path": "mailkit/3.1.0",
+      "path": "mailkit/3.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -173,14 +173,14 @@
         "lib/netstandard2.1/MailKit.dll",
         "lib/netstandard2.1/MailKit.pdb",
         "lib/netstandard2.1/MailKit.xml",
-        "mailkit.3.1.0.nupkg.sha512",
+        "mailkit.3.1.1.nupkg.sha512",
         "mailkit.nuspec"
       ]
     },
-    "MimeKit/3.1.0": {
-      "sha512": "ZBx2Mmq+vvDASI59K525hoHOtf9HqsvE5/jBuVSQB6Pwrh8keFHiKtFzKuh/G1Idj0Wr5qJOxxwPtsKJA3K3hA==",
+    "MimeKit/3.1.1": {
+      "sha512": "aY2fuCucJ0S5gWeak8o7aSZXm19Vr/rJj746+RlvUrPKzUESDyXKLoxqW6rs7z4DA0qJ1AQxEAO2MnWxZncLGA==",
       "type": "package",
-      "path": "mimekit/3.1.0",
+      "path": "mimekit/3.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -209,7 +209,7 @@
         "lib/netstandard2.1/MimeKit.dll",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.3.1.0.nupkg.sha512",
+        "mimekit.3.1.1.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },

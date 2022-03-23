@@ -325,21 +325,21 @@
           "Blazor_FrontEnd.dll": {}
         }
       },
-      "MailKit/3.1.0": {
+      "MailKit/3.1.1": {
         "dependencies": {
-          "MimeKit": "3.1.0"
+          "MimeKit": "3.1.1"
         },
         "runtime": {
           "lib/net5.0/MailKit.dll": {
             "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.1.0.0"
+            "fileVersion": "3.1.1.0"
           }
         },
         "compile": {
           "lib/net5.0/MailKit.dll": {}
         }
       },
-      "MimeKit/3.1.0": {
+      "MimeKit/3.1.1": {
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
           "System.Security.Cryptography.Pkcs": "5.0.0"
@@ -347,7 +347,7 @@
         "runtime": {
           "lib/net5.0/MimeKit.dll": {
             "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.1.0.0"
+            "fileVersion": "3.1.1.0"
           }
         },
         "compile": {
@@ -393,7 +393,7 @@
       },
       "Configurations/1.0.0": {
         "dependencies": {
-          "MailKit": "3.1.0",
+          "MailKit": "3.1.1",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
@@ -2109,19 +2109,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MailKit/3.1.0": {
+    "MailKit/3.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rTK4aBvNbJ+G+dB3W9C3J9EzdD3rt9A4863zjgnI+I1I//LwIZf83b0RKRZEmBFTScVARXFY25cXjS/7lUKcdg==",
-      "path": "mailkit/3.1.0",
-      "hashPath": "mailkit.3.1.0.nupkg.sha512"
+      "sha512": "sha512-NprdMF0ABNWOqQUuqz45X5YkJK6f3vtYwwvqR6nGVdmrZ7HkahNbSATpOZ5Rj3W1cgDGf/iD8vs/oCyZ4wUO7g==",
+      "path": "mailkit/3.1.1",
+      "hashPath": "mailkit.3.1.1.nupkg.sha512"
     },
-    "MimeKit/3.1.0": {
+    "MimeKit/3.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZBx2Mmq+vvDASI59K525hoHOtf9HqsvE5/jBuVSQB6Pwrh8keFHiKtFzKuh/G1Idj0Wr5qJOxxwPtsKJA3K3hA==",
-      "path": "mimekit/3.1.0",
-      "hashPath": "mimekit.3.1.0.nupkg.sha512"
+      "sha512": "sha512-aY2fuCucJ0S5gWeak8o7aSZXm19Vr/rJj746+RlvUrPKzUESDyXKLoxqW6rs7z4DA0qJ1AQxEAO2MnWxZncLGA==",
+      "path": "mimekit/3.1.1",
+      "hashPath": "mimekit.3.1.1.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

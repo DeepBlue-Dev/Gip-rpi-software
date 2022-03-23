@@ -7,6 +7,7 @@ namespace Configurations.Storage
 {
     public class JsonParser
     {
+        
         public T JsonToObject<T>([NotNull]string json) where T : IParsable
         {
             return JsonConvert.DeserializeObject<T>(json);

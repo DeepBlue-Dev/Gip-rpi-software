@@ -15,10 +15,8 @@ namespace Configurations
                 if (!CreateFile) { return false; }
                 File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));
                 return true;
-            } else
-            {
-                return true;
             }
+            return true;
         }
         //  writes a config to disk, if it doesnt exist, it will make a config file
         public void WriteConfig<T>([NotNull]T obj) where T : IParsable
@@ -36,6 +34,8 @@ namespace Configurations
 
         public void ReadConfigEX<T>(T obj) where T : IParsable
         {
+            if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("the config file did not exist"); }
+            if(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)) is null or "") { return; }
             new JsonParser().JsonToObjectEX(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)), obj);
         }
 

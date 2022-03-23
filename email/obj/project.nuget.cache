@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "Y3MW9JYCIPvWrNV/+4xRhIufU9nP4pxjRRvrKvEtRAZv6YnPXq9okWybtC3yAaXwUcLm5ie7Ww4rSJF1F1Pbxg==",
-  "success": true,
+  "dgSpecHash": "Kx9cYP+JN2MbaO+GFBtvlSTtCGX0Irze4KHDQVmrRNANu55XkCwuXt/r2uWQEqA3PtG1MC/C7nm+4RdWDdOXyQ==",
+  "success": false,
   "projectFilePath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\email\\email.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arthu\\.nuget\\packages\\mailkit\\3.1.0\\mailkit.3.1.0.nupkg.sha512",
@@ -16,5 +16,15 @@
     "C:\\Users\\arthu\\.nuget\\packages\\system.security.cryptography.cng\\5.0.0\\system.security.cryptography.cng.5.0.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\system.security.cryptography.pkcs\\5.0.0\\system.security.cryptography.pkcs.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: MailKit from 3.1.1 to 3.1.0. Reference the package directly from the project to select a different version. \r\n email -> Configurations -> MailKit (>= 3.1.1) \r\n email -> MailKit (>= 3.1.0)",
+      "libraryId": "MailKit",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
