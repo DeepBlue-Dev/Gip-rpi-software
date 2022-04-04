@@ -105,7 +105,7 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 57 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
     private string? addedEmail;
     private (List<string>, string?) Emails;
@@ -123,9 +123,7 @@ using Blazor_FrontEnd.Data;
         addedEmail = null;
     }
 
- 
-
-    public void Dispose()
+    public void Dispose()   //  gets called when browser is closed or user navigates to a different tab
     {
         Task.Run(() => emailService.UpdateEmails(parsedEmails));  //  store emails
     }

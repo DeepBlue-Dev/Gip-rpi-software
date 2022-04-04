@@ -1,4 +1,9 @@
 ﻿@page "/settings/battery"
+
+@using Blazor_FrontEnd.Data;
+@inject ForkliftService forklift
+@implements IDisposable
+
 <h3>Batterij instellingen</h3>
 <br />
 <hr />
@@ -9,11 +14,21 @@
     <input @bind="newWarningLevel" id="warningLevelInput"/>
 </form>
 <br />
+
+@if(error is not null)
+{
+    <hr />
+    <br />
+    <h5 style="color:firebrick">@error</h5>
+    <br />
+}
 <hr />
 
 @code {
-    private float warningLevel = 40F;
+    private float warningLevel;
     private float? newWarningLevel = null;
+    private string? error = null;
+
     private void ChangeWarningLevel()
     {
         if(newWarningLevel > 0 && newWarningLevel < 100 && newWarningLevel is not null)
@@ -21,5 +36,23 @@
             warningLevel = (float)newWarningLevel;
         }
         newWarningLevel = null;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var result = await Task.Run(() => forklift.GetStoredTreshold());
+        if(result.error is null)
+        {
+            warningLevel = result.treshold;
+        } else
+        {
+            error = result.error;
+        }
+    }
+
+    public async void Dispose()
+    {
+        await Task.Run(() => forklift.UpdateStoredTreshold(warningLevel));
     }
 }

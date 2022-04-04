@@ -7,5 +7,6 @@ namespace Configurations.Storage
 
         public static string EmailConfigurationName = "EmailConfiguration.json";
         public static string McuConnectionConfigurationName = "McuConnectionConfiguration.json";
+        public static string ForkliftConfigurationName = "ForkliftConfiguration.json";
     }
 }

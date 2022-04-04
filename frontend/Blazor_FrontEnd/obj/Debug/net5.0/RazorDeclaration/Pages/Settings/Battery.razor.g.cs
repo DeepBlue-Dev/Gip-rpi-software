@@ -82,8 +82,15 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Battery.razor"
+using Blazor_FrontEnd.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/battery")]
-    public partial class Battery : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Battery : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -91,10 +98,12 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 14 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Battery.razor"
+#line 27 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Battery.razor"
        
-    private float warningLevel = 40F;
+    private float warningLevel;
     private float? newWarningLevel = null;
+    private string? error = null;
+
     private void ChangeWarningLevel()
     {
         if(newWarningLevel > 0 && newWarningLevel < 100 && newWarningLevel is not null)
@@ -104,9 +113,28 @@ using Blazor_FrontEnd.Shared;
         newWarningLevel = null;
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var result = await Task.Run(() => forklift.GetStoredTreshold());
+        if(result.error is null)
+        {
+            warningLevel = result.treshold;
+        } else
+        {
+            error = result.error;
+        }
+    }
+
+    public async void Dispose()
+    {
+        await Task.Run(() => forklift.UpdateStoredTreshold(warningLevel));
+    }
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ForkliftService forklift { get; set; }
     }
 }
 #pragma warning restore 1591
