@@ -105,10 +105,11 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 56 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
     private string? addedEmail;
     private (List<string>, string?) Emails;
+    private List<string> parsedEmails = new List<string>();
 
     private async Task AddToTable()
     {
@@ -117,11 +118,12 @@ using Blazor_FrontEnd.Data;
             if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
                 Emails.Item1.Add(addedEmail);
-                if(await Task.Run(() => emailService.UpdateEmails(Emails.Item1)) is not null)
+                string? TaskResult = await Task.Run(() => emailService.UpdateEmails(Emails.Item1));
+                if(TaskResult is not null)
                 {
-                    Console.WriteLine(emailService.UpdateEmails(Emails.Item1).Result);
+                    Console.WriteLine($"failed on save {TaskResult}");
                 }
-                
+
             }
         }
         addedEmail = null;
@@ -130,8 +132,12 @@ using Blazor_FrontEnd.Data;
     //  on initialized page
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("initialized base");
-        Emails = await Task.Run(() => emailService.GetStoredEmails());    
+        await base.OnInitializedAsync();
+
+        Emails = await Task.Run(() => emailService.GetStoredEmails());
+        System.Diagnostics.Debug.Assert(Emails.Item1.Count == 0);
+        parsedEmails = Emails.Item1;
+
     }
     
 

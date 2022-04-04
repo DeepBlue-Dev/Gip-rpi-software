@@ -15,7 +15,7 @@ namespace Configurations.EmailConfiguration
         
         public List<string> Recipients = new List<string>();
       
-        public MimeKit.InternetAddress Sender;
+        public string Sender;
 
         public String MailServer = "smtp.gmail.com";
         public int MailServerPort = 587;

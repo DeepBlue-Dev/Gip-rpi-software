@@ -13,13 +13,21 @@ namespace Configurations.Storage
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        public void JsonToObjectEX<T>([NotNull]string json, T obj) where T : IParsable  //  EXPERIMENTAL
+        public T JsonToObjectEX<T>([NotNull]string json, T obj) where T : IParsable  //  EXPERIMENTAL
         {
-             JsonConvert.PopulateObject(json, obj);
+            Console.WriteLine(String.Concat("json->obj ", JsonConvert.DeserializeObject<T>(json)));
+            
+             obj = JsonConvert.DeserializeObject<T>(json);
+             if(obj is EmailConfiguration.EmailConfiguration)
+            {
+                (obj as EmailConfiguration.EmailConfiguration).Recipients.ForEach((recipient) => Console.Write($"{recipient}, "));
+            }
+            return obj;
         }
 
         public string ObjectToJson<T>([NotNull]T obj) where T : IParsable
         {
+            Console.WriteLine(String.Concat("obj->json ",JsonConvert.SerializeObject(obj)));
             return JsonConvert.SerializeObject(obj);
             
         }

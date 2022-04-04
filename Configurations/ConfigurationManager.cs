@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Configurations.Storage;
+using MailKit.Net;
 
 namespace Configurations
 {
     public class ConfigurationManager
     {
-        private bool CheckIfConfigurationExists<T>(bool CreateFile, T obj) where T : IParsable
+        private bool CheckIfConfigurationExists<T>(bool CreateFile, T obj) where T : IParsable, new()
         {
             if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){
                 if (!CreateFile) { return false; }
                 File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));
+                WriteConfig<T>(obj);
                 return true;
             }
             return true;
@@ -32,11 +34,11 @@ namespace Configurations
                 File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
         }
 
-        public void ReadConfigEX<T>(T obj) where T : IParsable
+        public T ReadConfigEX<T>(T obj) where T : IParsable,new()
         {
             if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("the config file did not exist"); }
-            if(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)) is null or "") { return; }
-            new JsonParser().JsonToObjectEX(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)), obj);
+            if(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)) is null or "") { return new T(); }
+            return new JsonParser().JsonToObjectEX(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)), obj);
         }
 
         public T ReadConfig<T>([NotNull] string configurationFileName) where T : IParsable

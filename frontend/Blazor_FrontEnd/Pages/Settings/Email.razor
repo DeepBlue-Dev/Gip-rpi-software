@@ -14,12 +14,18 @@
         </tr>
     </thead>
     <tbody>
-        @if (Emails.Item2 is not null && Emails.Item1.Count is not 0)
+        @if(Emails.Item1 is null)
         {
-            foreach (var addr in Emails.Item1)
+            <tr>
+                <td><h5 style="color:firebrick">LOADING...</h5></td>
+            </tr>
+        }else if (parsedEmails.Count > 0)
+        {
+      
+            @foreach (var addr in parsedEmails)
             {
                 <tr>
-                    <td>@addr.ToString()</td>
+                    <td>@addr</td>
                     <td>remove</td>
                 </tr>
             }
@@ -34,10 +40,14 @@
     </tbody>
 </table>
 <br />
-<form @onsubmit=@AddToTable>
+@if(Emails.Item1 is not null)
+{
+    <form @onsubmit=@AddToTable>
     <label for="emailInput"> Voeg een email toe</label>
     <input @bind="addedEmail" id="emailInput" />
-</form>
+    </form>
+}
+
 
 <br />
 <hr />
@@ -46,6 +56,7 @@
 @code {
     private string? addedEmail;
     private (List<string>, string?) Emails;
+    private List<string> parsedEmails = new List<string>();
 
     private async Task AddToTable()
     {
@@ -54,11 +65,12 @@
             if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
                 Emails.Item1.Add(addedEmail);
-                if(await Task.Run(() => emailService.UpdateEmails(Emails.Item1)) is not null)
+                string? TaskResult = await Task.Run(() => emailService.UpdateEmails(Emails.Item1));
+                if(TaskResult is not null)
                 {
-                    Console.WriteLine(emailService.UpdateEmails(Emails.Item1).Result);
+                    Console.WriteLine($"failed on save {TaskResult}");
                 }
-                
+
             }
         }
         addedEmail = null;
@@ -67,8 +79,12 @@
     //  on initialized page
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("initialized base");
-        Emails = await Task.Run(() => emailService.GetStoredEmails());    
+        await base.OnInitializedAsync();
+
+        Emails = await Task.Run(() => emailService.GetStoredEmails());
+        System.Diagnostics.Debug.Assert(Emails.Item1.Count == 0);
+        parsedEmails = Emails.Item1;
+
     }
     
 }
