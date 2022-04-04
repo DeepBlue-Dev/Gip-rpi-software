@@ -14,15 +14,9 @@ namespace Configurations.Storage
         }
 
         public T JsonToObjectEX<T>([NotNull]string json, T obj) where T : IParsable  //  EXPERIMENTAL
-        {
-            Console.WriteLine(String.Concat("json->obj ", JsonConvert.DeserializeObject<T>(json)));
-            
+        {            
              obj = JsonConvert.DeserializeObject<T>(json);
-             if(obj is EmailConfiguration.EmailConfiguration)
-            {
-                (obj as EmailConfiguration.EmailConfiguration).Recipients.ForEach((recipient) => Console.Write($"{recipient}, "));
-            }
-            return obj;
+             return obj;
         }
 
         public string ObjectToJson<T>([NotNull]T obj) where T : IParsable

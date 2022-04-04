@@ -12,10 +12,10 @@ namespace Configurations
     {
         private bool CheckIfConfigurationExists<T>(bool CreateFile, T obj) where T : IParsable, new()
         {
-            if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){
-                if (!CreateFile) { return false; }
-                File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));
-                WriteConfig<T>(obj);
+            if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){  //  check if file exists
+                if (!CreateFile) { return false; }  //  programmer said not to create a new file
+                File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));    //  create file
+                WriteConfig<T>(obj);    //  write object to file;
                 return true;
             }
             return true;
@@ -29,16 +29,15 @@ namespace Configurations
         
         public T ReadConfig<T>(T obj) where T : IParsable
         {
-            JsonParser parser = new JsonParser();
-            return parser.JsonToObject<T>(
-                File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
+            return new JsonParser().JsonToObject<T>(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
         }
 
         public T ReadConfigEX<T>(T obj) where T : IParsable,new()
         {
-            if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("the config file did not exist"); }
-            if(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)) is null or "") { return new T(); }
-            return new JsonParser().JsonToObjectEX(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)), obj);
+            if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("config file not found"); }    //  check if config exists, if not create file, if that fails generate exception
+            string text = File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)); //  fetch contents of file
+            if ( text is null or "") { return new T(); }  //  return new empty instance of T when the config file is not found
+            return new JsonParser().JsonToObjectEX(text, obj);
         }
 
         public T ReadConfig<T>([NotNull] string configurationFileName) where T : IParsable

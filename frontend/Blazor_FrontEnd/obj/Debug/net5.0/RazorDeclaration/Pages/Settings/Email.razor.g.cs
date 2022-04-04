@@ -97,7 +97,7 @@ using Blazor_FrontEnd.Data;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/email")]
-    public partial class Email : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Email : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,7 +105,7 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 58 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
     private string? addedEmail;
     private (List<string>, string?) Emails;
@@ -113,37 +113,35 @@ using Blazor_FrontEnd.Data;
 
     private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Emails.Item1.Contains(addedEmail))    //  check for doubles and empty/null strings
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !parsedEmails.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
             if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Emails.Item1.Add(addedEmail);
-                string? TaskResult = await Task.Run(() => emailService.UpdateEmails(Emails.Item1));
-                if(TaskResult is not null)
-                {
-                    Console.WriteLine($"failed on save {TaskResult}");
-                }
-
+                parsedEmails.Add(addedEmail);
             }
         }
         addedEmail = null;
+    }
+
+ 
+
+    public void Dispose()
+    {
+        Task.Run(() => emailService.UpdateEmails(parsedEmails));  //  store emails
     }
 
     //  on initialized page
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-
-        Emails = await Task.Run(() => emailService.GetStoredEmails());
-        System.Diagnostics.Debug.Assert(Emails.Item1.Count == 0);
+        Emails = await Task.Run(() => emailService.GetStoredEmails());  //  fetch emails 
         parsedEmails = Emails.Item1;
-
-    }
-    
+    }    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private EmailsService emailService { get; set; }
     }
 }

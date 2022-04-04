@@ -3,7 +3,9 @@
 @using System.ComponentModel.DataAnnotations;
 @using Blazor_FrontEnd.Data;
 
-@inject EmailsService emailService;
+@implements IDisposable
+@inject EmailsService emailService
+@inject NavigationManager NavManager
 
 <h3>Email adressen</h3>
 
@@ -26,7 +28,7 @@
             {
                 <tr>
                     <td>@addr</td>
-                    <td>remove</td>
+                    <td @onclick="()=>parsedEmails.RemoveAt(parsedEmails.IndexOf(addr))" >remove</td>
                 </tr>
             }
         }
@@ -60,31 +62,28 @@
 
     private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Emails.Item1.Contains(addedEmail))    //  check for doubles and empty/null strings
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !parsedEmails.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
             if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Emails.Item1.Add(addedEmail);
-                string? TaskResult = await Task.Run(() => emailService.UpdateEmails(Emails.Item1));
-                if(TaskResult is not null)
-                {
-                    Console.WriteLine($"failed on save {TaskResult}");
-                }
-
+                parsedEmails.Add(addedEmail);
             }
         }
         addedEmail = null;
+    }
+
+ 
+
+    public void Dispose()
+    {
+        Task.Run(() => emailService.UpdateEmails(parsedEmails));  //  store emails
     }
 
     //  on initialized page
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-
-        Emails = await Task.Run(() => emailService.GetStoredEmails());
-        System.Diagnostics.Debug.Assert(Emails.Item1.Count == 0);
+        Emails = await Task.Run(() => emailService.GetStoredEmails());  //  fetch emails 
         parsedEmails = Emails.Item1;
-
-    }
-    
+    }    
 }
