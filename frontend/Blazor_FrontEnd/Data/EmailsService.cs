@@ -14,7 +14,7 @@ namespace Blazor_FrontEnd.Data
         {
             try
             {
-                EmailConfiguration conf = manager.ReadConfigEX<EmailConfiguration>(new EmailConfiguration());   //  fetch the config
+                EmailConfiguration conf = manager.ReadConfig<EmailConfiguration>(new EmailConfiguration());   //  fetch the config
                 if(conf is null) { throw new Exception("No configuration file was found"); }
                 if(conf is null || conf.Recipients.Count == 0)
                 {
@@ -32,7 +32,7 @@ namespace Blazor_FrontEnd.Data
         {
             try
             {
-                EmailConfiguration config = manager.ReadConfigEX<EmailConfiguration>(new EmailConfiguration()); //  fetch the existing config
+                EmailConfiguration config = manager.ReadConfig<EmailConfiguration>(new EmailConfiguration()); //  fetch the existing config
                 config.Recipients.Clear();  //  clear the list, to completely update it
                 config.Recipients.AddRange(updatedEmails);  //  add the emails
                 manager.WriteConfig<EmailConfiguration>(config);    //  write to disk

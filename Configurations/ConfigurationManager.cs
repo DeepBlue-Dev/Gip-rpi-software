@@ -27,16 +27,11 @@ namespace Configurations
             File.WriteAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName),parser.ObjectToJson(obj));
         }
         
-        public T ReadConfig<T>(T obj) where T : IParsable
-        {
-            return new JsonParser().JsonToObject<T>(File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
-        }
-
-        public T ReadConfigEX<T>(T obj) where T : IParsable,new()
+        public T ReadConfig<T>([NotNull]T obj) where T : IParsable,new()
         {
             if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("config file not found"); }    //  check if config exists, if not create file, if that fails generate exception
             string text = File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)); //  fetch contents of file
-            if ( text is null or "") { return new T(); }  //  return new empty instance of T when the config file is not found
+            if (text is null or "") { return new T(); }  //  return new empty instance of T when the config file is not found
             return new JsonParser().JsonToObjectEX(text, obj);
         }
 
