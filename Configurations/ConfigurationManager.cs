@@ -10,7 +10,7 @@ namespace Configurations
 {
     public class ConfigurationManager
     {
-        private bool CheckIfConfigurationExists<T>(bool CreateFile, T obj) where T : IParsable, new()
+        private bool CheckIfConfigurationExists<T>(bool CreateFile,[NotNull] T obj) where T : IParsable, new()
         {
             if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){  //  check if file exists
                 if (!CreateFile) { return false; }  //  programmer said not to create a new file
@@ -34,7 +34,7 @@ namespace Configurations
             if (text is null or "") { return new T(); }  //  return new empty instance of T when the config file is not found
             return new JsonParser().JsonToObjectEX(text, obj);
         }
-
+        
         public T ReadConfig<T>([NotNull] string configurationFileName) where T : IParsable
         {
             JsonParser parser = new JsonParser();

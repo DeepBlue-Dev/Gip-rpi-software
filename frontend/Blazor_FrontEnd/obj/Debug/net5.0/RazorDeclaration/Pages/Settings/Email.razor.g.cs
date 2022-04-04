@@ -125,7 +125,7 @@ using Blazor_FrontEnd.Data;
 
     public void Dispose()   //  gets called when browser is closed or user navigates to a different tab
     {
-        Task.Run(() => emailService.UpdateEmails(parsedEmails));  //  store emails
+        emailService.UpdateEmails(parsedEmails);  //  store emails
     }
 
     //  on initialized page
