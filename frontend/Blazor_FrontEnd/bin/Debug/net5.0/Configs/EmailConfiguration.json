@@ -1,1 +1,1 @@
-{"Recipients":["arthur.bayart@sgsintpaulus.eu","arthur.bayart@gmail.com"],"Sender":"service.baykor@gmail.com","MailServer":"smtp.gmail.com","MailServerPort":587,"UseSecureSocketOptions":false,"ConfigurationFileName":"EmailConfiguration.json"}
+{"Recipients":["arthur.bayart@sgsintpaulus.eu"],"Sender":"service.baykor@gmail.com","MailServer":"smtp.gmail.com","MailServerPort":587,"UseSecureSocketOptions":false,"ConfigurationFileName":"EmailConfiguration.json"}

@@ -82,6 +82,13 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+using Blazor_FrontEnd.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/connection")]
     public partial class Connection : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -91,14 +98,30 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+#line 50 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
        
     private bool Connected = true;
     private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
+    private string? ipAdress;
+    private string? port;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        IpcClient.Start();
+        IpcClient.SendString("a");
+        ipAdress = IpcClient.ReadString();
+        port = IpcClient.ReadString();
+        
+        
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPCClient IpcClient { get; set; }
     }
 }
 #pragma warning restore 1591

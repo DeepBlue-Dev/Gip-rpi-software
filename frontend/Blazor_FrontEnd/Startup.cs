@@ -31,6 +31,7 @@ namespace Blazor_FrontEnd
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<EmailsService>();
             services.AddSingleton<ForkliftService>();
+            services.AddSingleton<IPCClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

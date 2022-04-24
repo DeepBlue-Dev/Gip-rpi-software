@@ -83,14 +83,21 @@ using Blazor_FrontEnd.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
 using System.ComponentModel.DataAnnotations;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+using Blazor_FrontEnd.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/email")]
-    public partial class Email : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Email : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,29 +105,42 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
+#line 57 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Email.razor"
        
-    private string addedEmail;
-    private List<string> Adresses = new();
-    private ElementReference emailInputField_ref;
+    private string? addedEmail;
+    private (List<string>, string?) Emails;
+    private List<string> parsedEmails = new List<string>();
 
-    private void AddToList()
+    private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !parsedEmails.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
-            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Adresses.Add(addedEmail);  
+                parsedEmails.Add(addedEmail);
             }
-
         }
-        addedEmail = null; 
+        addedEmail = null;
     }
 
+    public void Dispose()   //  gets called when browser is closed or user navigates to a different tab
+    {
+        emailService.UpdateEmails(parsedEmails);  //  store emails
+    }
+
+    //  on initialized page
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Emails = await Task.Run(() => emailService.GetStoredEmails());  //  fetch emails 
+        parsedEmails = Emails.Item1;
+    }    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private EmailsService emailService { get; set; }
     }
 }
 #pragma warning restore 1591

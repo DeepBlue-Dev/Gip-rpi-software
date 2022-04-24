@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "bootstrap-toggle.less/2.2.0.1": {
+        "type": "package"
+      },
       "MailKit/3.1.1": {
         "type": "package",
         "dependencies": {
@@ -108,6 +111,19 @@
     }
   },
   "libraries": {
+    "bootstrap-toggle.less/2.2.0.1": {
+      "sha512": "5Xb5m/1BayAx3T+FQ7h+UhcT88A8HiMQUqNieRJlIXR+ZlHpdGmY+NF4x74m7evr1A1aI1o1wwn5pdFtXT90hA==",
+      "type": "package",
+      "path": "bootstrap-toggle.less/2.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootstrap-toggle.less.2.2.0.1.nupkg.sha512",
+        "bootstrap-toggle.less.nuspec",
+        "content/content/bootstrap-toggle.less",
+        "content/scripts/bootstrap-toggle.js"
+      ]
+    },
     "MailKit/3.1.1": {
       "sha512": "NprdMF0ABNWOqQUuqz45X5YkJK6f3vtYwwvqR6nGVdmrZ7HkahNbSATpOZ5Rj3W1cgDGf/iD8vs/oCyZ4wUO7g==",
       "type": "package",
@@ -381,7 +397,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Configurations >= 1.0.0"
+      "Configurations >= 1.0.0",
+      "bootstrap-toggle.less >= 2.2.0.1"
     ]
   },
   "packageFolders": {
@@ -426,6 +443,12 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
+        "dependencies": {
+          "bootstrap-toggle.less": {
+            "target": "Package",
+            "version": "[2.2.0.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

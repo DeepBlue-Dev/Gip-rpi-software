@@ -7,6 +7,6 @@ C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\
 C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\Configurations.AssemblyInfo.cs
 C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\Configurations.csproj.CoreCompileInputs.cache
 C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\Configurations.dll
-C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\ref\Configurations.dll
-C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\Configurations.pdb
 C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\refint\Configurations.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\Configurations.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\Configurations\obj\Debug\net5.0\ref\Configurations.dll

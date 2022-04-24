@@ -34,6 +34,7 @@
       "Blazor_FrontEnd/1.0.0": {
         "dependencies": {
           "Configurations": "1.0.0",
+          "bootstrap-toggle.less": "2.2.0.1",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -325,6 +326,7 @@
           "Blazor_FrontEnd.dll": {}
         }
       },
+      "bootstrap-toggle.less/2.2.0.1": {},
       "MailKit/3.1.1": {
         "dependencies": {
           "MimeKit": "3.1.1"
@@ -2108,6 +2110,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "bootstrap-toggle.less/2.2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5Xb5m/1BayAx3T+FQ7h+UhcT88A8HiMQUqNieRJlIXR+ZlHpdGmY+NF4x74m7evr1A1aI1o1wwn5pdFtXT90hA==",
+      "path": "bootstrap-toggle.less/2.2.0.1",
+      "hashPath": "bootstrap-toggle.less.2.2.0.1.nupkg.sha512"
     },
     "MailKit/3.1.1": {
       "type": "package",
