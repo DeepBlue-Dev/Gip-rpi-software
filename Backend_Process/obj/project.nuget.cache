@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "o6Yo0AI1QaqvT5wXVOKK5Q7fTw1Cijvw78KYSPFVZpqkTsuUyVCvl+V4aop+0GiHtvZjodKbmg8vH3CYD4Jqmw==",
+  "dgSpecHash": "LWRXzXgGGoMrrbzWTecZYhgdjAP89hJu7TcLcd86dNki3piZ6kgjmHKVdWQLFO2ysTQfIf3+xYlSrb1t5ZNU6g==",
   "success": true,
   "projectFilePath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Backend_Process\\Backend_Process.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\arthu\\.nuget\\packages\\bootstrap-toggle.less\\2.2.0.1\\bootstrap-toggle.less.2.2.0.1.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
     "C:\\Users\\arthu\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

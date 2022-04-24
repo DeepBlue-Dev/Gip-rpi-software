@@ -10,6 +10,13 @@ namespace Configurations
 {
     public class ConfigurationManager
     {
+        public ConfigurationManager() { 
+            if(!Directory.Exists(StorageConfig.ConfigBasePath))
+            {
+                Directory.CreateDirectory(StorageConfig.ConfigBasePath);
+            }
+        }
+
         private bool CheckIfConfigurationExists<T>(bool CreateFile,[NotNull] T obj) where T : IParsable, new()
         {
             if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){  //  check if file exists
@@ -31,7 +38,10 @@ namespace Configurations
         {
             if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("config file not found"); }    //  check if config exists, if not create file, if that fails generate exception
             string text = File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)); //  fetch contents of file
-            if (text is null or "") { return new T(); }  //  return new empty instance of T when the config file is not found
+            if (text is null or "") { 
+                WriteConfig<T>(new T());
+                return new T();
+            }  //  return new empty instance of T when the config file is not found
             return new JsonParser().JsonToObjectEX(text, obj);
         }
         

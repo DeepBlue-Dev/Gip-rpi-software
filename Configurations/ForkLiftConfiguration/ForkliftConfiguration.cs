@@ -10,6 +10,8 @@ namespace Configurations.ForkliftConfiguration
     {
         public string ConfigurationFileName => Storage.StorageConfig.ForkliftConfigurationName;
         public float TresholdWarning { get; set; }  //  treshold value when the email will be sent
+        public float TotalBatteryCapacity { get; set; }
+
 
         public ForkliftConfiguration()
         {

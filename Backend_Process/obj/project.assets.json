@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "bootstrap-toggle.less/2.2.0.1": {
+        "type": "package"
+      },
       "MailKit/3.2.0": {
         "type": "package",
         "dependencies": {
@@ -176,6 +179,24 @@
           }
         }
       },
+      "Blazor_FrontEnd/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Configurations": "1.0.0",
+          "bootstrap-toggle.less": "2.2.0.1",
+          "mcuConnection": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Blazor_FrontEnd.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Blazor_FrontEnd.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Configurations/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -235,6 +256,19 @@
     }
   },
   "libraries": {
+    "bootstrap-toggle.less/2.2.0.1": {
+      "sha512": "5Xb5m/1BayAx3T+FQ7h+UhcT88A8HiMQUqNieRJlIXR+ZlHpdGmY+NF4x74m7evr1A1aI1o1wwn5pdFtXT90hA==",
+      "type": "package",
+      "path": "bootstrap-toggle.less/2.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootstrap-toggle.less.2.2.0.1.nupkg.sha512",
+        "bootstrap-toggle.less.nuspec",
+        "content/content/bootstrap-toggle.less",
+        "content/scripts/bootstrap-toggle.js"
+      ]
+    },
     "MailKit/3.2.0": {
       "sha512": "5MTpTqmjqT7HPvYbP3HozRZMth5vSaT0ReN0iM3rAM4CgLI/R1qqtLDDNWGnFFIlcNzeJkZQRJJMkv8cgzWBbA==",
       "type": "package",
@@ -661,6 +695,11 @@
         "version.txt"
       ]
     },
+    "Blazor_FrontEnd/1.0.0": {
+      "type": "project",
+      "path": "../frontend/Blazor_FrontEnd/Blazor_FrontEnd.csproj",
+      "msbuildProject": "../frontend/Blazor_FrontEnd/Blazor_FrontEnd.csproj"
+    },
     "Configurations/1.0.0": {
       "type": "project",
       "path": "../Configurations/Configurations.csproj",
@@ -684,6 +723,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Blazor_FrontEnd >= 1.0.0",
       "Configurations >= 1.0.0",
       "IPC >= 1.0.0",
       "email >= 1.0.0",
@@ -722,6 +762,9 @@
             },
             "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\email\\email.csproj": {
               "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\email\\email.csproj"
+            },
+            "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj": {
+              "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj"
             },
             "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\IPC\\IPC\\IPC.csproj": {
               "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\IPC\\IPC\\IPC.csproj"

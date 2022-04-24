@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Blazor_FrontEnd.Data.RequestCodes;
 using System.IO.Pipes;
 using System.IO;
 using System.Text;
@@ -106,7 +107,7 @@ namespace Blazor_FrontEnd.Data
             }
         }
 
-        public Task<string?> SendCode(RequestCodes code)
+        public Task<string?> SendCode(RequestCodes.RequestCodes code)
         {
             if(!_pipeClientStream.IsConnected) { return Task.FromResult<string?>("pipe not connected"); }
 

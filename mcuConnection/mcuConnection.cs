@@ -15,7 +15,7 @@ namespace mcuConnection
         public bool Connected { get; private set; }
         private TcpClient _client;
         private NetworkStream _connection;
-        private readonly (IPAddress ip, int port) _connectionInfo;
+        public readonly (IPAddress ip, int port) _connectionInfo;
         
 
         public McuConnection((IPAddress ip, int port) connInfo)
@@ -34,6 +34,11 @@ namespace mcuConnection
         {
             ConfigurationManager manager = new ConfigurationManager();
             McuConnectionConfig connectionConfig = manager.ReadConfig<McuConnectionConfig>(new McuConnectionConfig());
+            if(connectionConfig.McuSocket.ip is null)
+            {
+                connectionConfig.McuSocket.ip = (IPAddress.Parse("192.168.140.133"));
+                connectionConfig.McuSocket.port = 1337;
+            }
             _connectionInfo.ip = connectionConfig.McuSocket.ip;
             _connectionInfo.port = connectionConfig.McuSocket.port;
         }
@@ -50,8 +55,12 @@ namespace mcuConnection
             
             try
             {
-                _client = new TcpClient(_connectionInfo.ip.ToString(), _connectionInfo.port);
-                _connection = _client.GetStream();
+                if(_client is null)
+                {
+                    _client = new TcpClient(_connectionInfo.ip.ToString(), _connectionInfo.port);
+                    _connection = _client.GetStream();
+                }
+                
                 _connection.Write(Encoding.ASCII.GetBytes(new char[]{Convert.ToChar(InstructionCodes.CreateConnection)}));
                 var bytes = _connection.Read(respBuffer,0,respBuffer.Length);
 
@@ -82,6 +91,7 @@ namespace mcuConnection
         {
             _connection.Close();
             _client.Close();
+            Connected = false;
         }
 
         //  send string to mcu, this is dangerous since this can have unpredictable behaviour

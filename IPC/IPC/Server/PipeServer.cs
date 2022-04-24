@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.IO.Pipes;
+using IPC.StreamString;
 
 namespace IPC.Server
 {
-    public class PipeServer
+    public class PipeServer 
     {
         private string _pipeName = "pipe";
-        private UnicodeEncoding _streamEncoder;
+        private StreamString.StreamString _streamString;
         private NamedPipeServerStream _pipeServerStream;
 
         //  initialize and catch possible exceptions
         public PipeServer()
-        {  
+        {
             try
             {
                 _pipeServerStream = new NamedPipeServerStream(_pipeName, PipeDirection.InOut);
-                _streamEncoder = new UnicodeEncoding();
+                _streamString = new StreamString.StreamString(_pipeServerStream);
+                
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -34,36 +35,54 @@ namespace IPC.Server
 
         public string? ReadString()
         {
+            StreamReader reader = new StreamReader(_pipeServerStream);
             StringBuilder sBuilder = new StringBuilder();
             int readByte = 0;
-            if(!_pipeServerStream.IsConnected) { return null; }
-            
+            if (!_pipeServerStream.CanRead) { return null; }
+
             try
             {
-                while((readByte = _pipeServerStream.ReadByte()) != -1)
+                while ((readByte = reader.Read()) != -1)
                 {
-                    sBuilder.Append(readByte);
+
+                    sBuilder.Append((char)readByte);
+                    if ((char)readByte == '\0') { break; }
+                    if (reader.EndOfStream) { break; }
+
                 }
+                Console.WriteLine(sBuilder.ToString());
                 return sBuilder.ToString();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                return null;
+                throw new Exception(ex.Message, ex.InnerException);
             }
         }
 
-        public bool SendString(string toSend)
+        public bool NewCommandArrived()
         {
-            if (!_pipeServerStream.IsConnected ||toSend.Length < 1) { return false; }
+            if (!_pipeServerStream.IsConnected) { return false; }
+            StreamReader reader = new StreamReader(_pipeServerStream);
+
+            if (reader.EndOfStream) { return false; }
+            return true;
+        }
+
+        public string WriteString([System.Diagnostics.CodeAnalysis.NotNull] string outString)
+        {
+            if (!_pipeServerStream.CanWrite || outString is null || outString.Length < 1) { return null; }
 
             try
             {
-                _pipeServerStream.Write(Encoding.ASCII.GetBytes(toSend.ToCharArray()));
-                return true;
-            }catch(Exception ex)
+                _pipeServerStream.Write(Encoding.Convert(Encoding.Default, Encoding.ASCII, Encoding.Default.GetBytes(outString)));
+                _pipeServerStream.WriteByte(0);
+                return null;
+            }
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                return false;
+                return null;
             }
         }
     }

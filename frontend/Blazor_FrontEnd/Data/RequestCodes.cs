@@ -1,8 +1,8 @@
 ﻿using mcuConnection;
 
-namespace Blazor_FrontEnd.Data
+namespace Blazor_FrontEnd.Data.RequestCodes
 {
-    public enum RequestCodes: byte
+    public enum RequestCodes : byte
     {
         GetSocketData,
         GetOnlineStatus,

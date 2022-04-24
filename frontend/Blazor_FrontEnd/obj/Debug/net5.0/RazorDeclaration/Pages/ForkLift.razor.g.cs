@@ -89,6 +89,13 @@ using Blazor_FrontEnd.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+using Blazor_FrontEnd.Data.RequestCodes;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Forklift")]
     public partial class ForkLift : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,7 +105,7 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+#line 32 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
        
     private float percentage;
     private bool handbrakeActivated = false;

@@ -5,4 +5,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Configurations\Configurations.csproj" />
+    <ProjectReference Include="..\email\email.csproj" />
+    <ProjectReference Include="..\frontend\Blazor_FrontEnd\Blazor_FrontEnd.csproj" />
+    <ProjectReference Include="..\IPC\IPC\IPC.csproj" />
+    <ProjectReference Include="..\mcuConnection\mcuConnection.csproj" />
+  </ItemGroup>
+
 </Project>
