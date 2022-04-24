@@ -18,8 +18,20 @@
        </thead>
        <tbody>
            <tr>
-               <td>@ipAdress</td>
-               <td>@port</td>
+                @if(ipAdress is null)
+                {
+                    <td style="color:firebrick">LOADING</td>
+                } else
+                {
+                    <td>@ipAdress</td>
+                }
+                @if(port is null)
+                {
+                    <td style="color:firebrick">LOADING</td>
+                } else
+                {
+                    <td>@port</td>
+                }
            </tr>
        </tbody>
     </table>
@@ -54,13 +66,13 @@
     private string? port;
 
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         base.OnInitialized();
         IpcClient.Start();
         IpcClient.SendString("a");
-        ipAdress = IpcClient.ReadString();
-        port = IpcClient.ReadString();
+        ipAdress = await IpcClient.ReadString();
+        port = await IpcClient.ReadString();
         
         
     }

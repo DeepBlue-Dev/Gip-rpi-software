@@ -82,6 +82,13 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+using Blazor_FrontEnd.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Forklift")]
     public partial class ForkLift : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -91,31 +98,26 @@ using Blazor_FrontEnd.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+#line 31 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
        
     private float percentage;
     private bool handbrakeActivated = false;
-
+    private string? handbrakeStatus = null;
+    private string? batteryPercentage = null;
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        percentage = 100F;
-        var timer = new System.Threading.Timer((_) =>
-        {
-            InvokeAsync(async () =>
-            {
-                percentage -= (percentage > 0)?5F:0;   //  create real updater
-                StateHasChanged();  //  re-render the component
-            });
-
-        }, null, 0, 1000);
+        backendComm.StartSynchronous();
+        handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus);
+        batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage);
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPCClient backendComm { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -98,7 +98,7 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+#line 62 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
        
     private bool Connected = true;
     private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
@@ -106,13 +106,13 @@ using Blazor_FrontEnd.Data;
     private string? port;
 
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         base.OnInitialized();
         IpcClient.Start();
         IpcClient.SendString("a");
-        ipAdress = IpcClient.ReadString();
-        port = IpcClient.ReadString();
+        ipAdress = await IpcClient.ReadString();
+        port = await IpcClient.ReadString();
         
         
     }

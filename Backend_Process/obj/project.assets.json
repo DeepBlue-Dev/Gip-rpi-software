@@ -2,13 +2,10 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "bootstrap-toggle.less/2.2.0.1": {
-        "type": "package"
-      },
-      "MailKit/3.1.1": {
+      "MailKit/3.2.0": {
         "type": "package",
         "dependencies": {
-          "MimeKit": "3.1.1"
+          "MimeKit": "3.2.0"
         },
         "compile": {
           "lib/net5.0/MailKit.dll": {}
@@ -17,7 +14,47 @@
           "lib/net5.0/MailKit.dll": {}
         }
       },
-      "MimeKit/3.1.1": {
+      "Microsoft.Extensions.Configuration/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "MimeKit/3.2.0": {
         "type": "package",
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
@@ -90,6 +127,18 @@
           "lib/netstandard2.0/System.Formats.Asn1.dll": {}
         }
       },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
       "System.Security.Cryptography.Cng/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -141,6 +190,32 @@
           "bin/placeholder/Configurations.dll": {}
         }
       },
+      "email/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Configurations": "1.0.0",
+          "MailKit": "3.2.0",
+          "Microsoft.Extensions.Configuration": "6.0.1",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/email.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/email.dll": {}
+        }
+      },
+      "IPC/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/IPC.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IPC.dll": {}
+        }
+      },
       "mcuConnection/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -160,23 +235,10 @@
     }
   },
   "libraries": {
-    "bootstrap-toggle.less/2.2.0.1": {
-      "sha512": "5Xb5m/1BayAx3T+FQ7h+UhcT88A8HiMQUqNieRJlIXR+ZlHpdGmY+NF4x74m7evr1A1aI1o1wwn5pdFtXT90hA==",
+    "MailKit/3.2.0": {
+      "sha512": "5MTpTqmjqT7HPvYbP3HozRZMth5vSaT0ReN0iM3rAM4CgLI/R1qqtLDDNWGnFFIlcNzeJkZQRJJMkv8cgzWBbA==",
       "type": "package",
-      "path": "bootstrap-toggle.less/2.2.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "bootstrap-toggle.less.2.2.0.1.nupkg.sha512",
-        "bootstrap-toggle.less.nuspec",
-        "content/content/bootstrap-toggle.less",
-        "content/scripts/bootstrap-toggle.js"
-      ]
-    },
-    "MailKit/3.1.1": {
-      "sha512": "NprdMF0ABNWOqQUuqz45X5YkJK6f3vtYwwvqR6nGVdmrZ7HkahNbSATpOZ5Rj3W1cgDGf/iD8vs/oCyZ4wUO7g==",
-      "type": "package",
-      "path": "mailkit/3.1.1",
+      "path": "mailkit/3.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -184,9 +246,9 @@
         "lib/net452/MailKit.dll",
         "lib/net452/MailKit.pdb",
         "lib/net452/MailKit.xml",
-        "lib/net46/MailKit.dll",
-        "lib/net46/MailKit.pdb",
-        "lib/net46/MailKit.xml",
+        "lib/net461/MailKit.dll",
+        "lib/net461/MailKit.pdb",
+        "lib/net461/MailKit.xml",
         "lib/net47/MailKit.dll",
         "lib/net47/MailKit.pdb",
         "lib/net47/MailKit.xml",
@@ -205,14 +267,77 @@
         "lib/netstandard2.1/MailKit.dll",
         "lib/netstandard2.1/MailKit.pdb",
         "lib/netstandard2.1/MailKit.xml",
-        "mailkit.3.1.1.nupkg.sha512",
+        "mailkit.3.2.0.nupkg.sha512",
         "mailkit.nuspec"
       ]
     },
-    "MimeKit/3.1.1": {
-      "sha512": "aY2fuCucJ0S5gWeak8o7aSZXm19Vr/rJj746+RlvUrPKzUESDyXKLoxqW6rs7z4DA0qJ1AQxEAO2MnWxZncLGA==",
+    "Microsoft.Extensions.Configuration/6.0.1": {
+      "sha512": "BUyFU9t+HzlSE7ri4B+AQN2BgTgHv/uM82s5ZkgU1BApyzWzIl48nDsG5wR1t0pniNuuyTBzG3qCW8152/NtSw==",
       "type": "package",
-      "path": "mimekit/3.1.1",
+      "path": "microsoft.extensions.configuration/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+        "microsoft.extensions.configuration.6.0.1.nupkg.sha512",
+        "microsoft.extensions.configuration.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
+      "sha512": "qWzV9o+ZRWq+pGm+1dF+R7qTgTYoXvbyowRoBxQJGfqTpqDun2eteerjRQhq5PQ/14S+lqto3Ft4gYaRyl4rdQ==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/6.0.0": {
+      "sha512": "9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.Primitives.dll",
+        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/net6.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net6.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "MimeKit/3.2.0": {
+      "sha512": "l9YHMBhBUwY7qQHUp8fw0EvjcbmhN4Iggz6MdjqIShBf42+0nJTa5gu0kuupCOPuiARc9ZaS9c9f0gKz4OnxKw==",
+      "type": "package",
+      "path": "mimekit/3.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -220,9 +345,9 @@
         "lib/net452/MimeKit.dll",
         "lib/net452/MimeKit.pdb",
         "lib/net452/MimeKit.xml",
-        "lib/net46/MimeKit.dll",
-        "lib/net46/MimeKit.pdb",
-        "lib/net46/MimeKit.xml",
+        "lib/net461/MimeKit.dll",
+        "lib/net461/MimeKit.pdb",
+        "lib/net461/MimeKit.xml",
         "lib/net47/MimeKit.dll",
         "lib/net47/MimeKit.pdb",
         "lib/net47/MimeKit.xml",
@@ -241,7 +366,7 @@
         "lib/netstandard2.1/MimeKit.dll",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.3.1.1.nupkg.sha512",
+        "mimekit.3.2.0.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },
@@ -380,6 +505,31 @@
         "version.txt"
       ]
     },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Security.Cryptography.Cng/5.0.0": {
       "sha512": "jIMXsKn94T9JY7PvPq/tMfqa6GAaHpElRDpmG+SuL+D3+sTw2M8VhnibKnN8Tq+4JqbPJ/f+BwtLeDMEnzAvRg==",
       "type": "package",
@@ -513,19 +663,30 @@
     },
     "Configurations/1.0.0": {
       "type": "project",
-      "path": "../../Configurations/Configurations.csproj",
-      "msbuildProject": "../../Configurations/Configurations.csproj"
+      "path": "../Configurations/Configurations.csproj",
+      "msbuildProject": "../Configurations/Configurations.csproj"
+    },
+    "email/1.0.0": {
+      "type": "project",
+      "path": "../email/email.csproj",
+      "msbuildProject": "../email/email.csproj"
+    },
+    "IPC/1.0.0": {
+      "type": "project",
+      "path": "../IPC/IPC/IPC.csproj",
+      "msbuildProject": "../IPC/IPC/IPC.csproj"
     },
     "mcuConnection/1.0.0": {
       "type": "project",
-      "path": "../../mcuConnection/mcuConnection.csproj",
-      "msbuildProject": "../../mcuConnection/mcuConnection.csproj"
+      "path": "../mcuConnection/mcuConnection.csproj",
+      "msbuildProject": "../mcuConnection/mcuConnection.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Configurations >= 1.0.0",
-      "bootstrap-toggle.less >= 2.2.0.1",
+      "IPC >= 1.0.0",
+      "email >= 1.0.0",
       "mcuConnection >= 1.0.0"
     ]
   },
@@ -535,11 +696,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj",
-      "projectName": "Blazor_FrontEnd",
-      "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\Blazor_FrontEnd.csproj",
+      "projectUniqueName": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Backend_Process\\Backend_Process.csproj",
+      "projectName": "Backend_Process",
+      "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Backend_Process\\Backend_Process.csproj",
       "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\frontend\\Blazor_FrontEnd\\obj\\",
+      "outputPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Backend_Process\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\arthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -559,6 +720,12 @@
             "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj": {
               "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\Configurations\\Configurations.csproj"
             },
+            "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\email\\email.csproj": {
+              "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\email\\email.csproj"
+            },
+            "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\IPC\\IPC\\IPC.csproj": {
+              "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\IPC\\IPC\\IPC.csproj"
+            },
             "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\mcuConnection\\mcuConnection.csproj": {
               "projectPath": "C:\\Users\\arthu\\Documents\\Rider Projects\\gip rpi\\mcuConnection\\mcuConnection.csproj"
             }
@@ -574,12 +741,6 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
-        "dependencies": {
-          "bootstrap-toggle.less": {
-            "target": "Package",
-            "version": "[2.2.0.1, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",
@@ -591,9 +752,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

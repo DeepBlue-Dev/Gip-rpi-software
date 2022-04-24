@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Configurations\Configurations.csproj" />
+    <ProjectReference Include="..\..\mcuConnection\mcuConnection.csproj" />
   </ItemGroup>
 
 </Project>
