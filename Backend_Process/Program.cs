@@ -19,6 +19,7 @@ namespace Backend_Process
         private static System.Timers.Timer timer = new System.Timers.Timer();
         private static UInt32 MaxBatteryCapacity = 25000;  //  this is a temporary solution
         private static UInt32 CurrentBatteryCharge = 18000;    //  idem dito
+        private static bool WarningEmailSent = false;
 
         private static void Tick(object src, System.Timers.ElapsedEventArgs e)
         {
@@ -37,7 +38,7 @@ namespace Backend_Process
            
 
             timer.Elapsed += new System.Timers.ElapsedEventHandler(Tick);   //  add event handler
-            timer.Interval = 60000; //  1-minut interval
+            timer.Interval = 60000; //  1-minute interval
 
             try
             {
@@ -76,8 +77,9 @@ namespace Backend_Process
                     }
                 }
 
-                if(CurrentBatteryCharge < (configManager.ReadConfig<ForkliftConfiguration>(new ForkliftConfiguration()).TresholdWarning * MaxBatteryCapacity))
+                if(CurrentBatteryCharge < (configManager.ReadConfig<ForkliftConfiguration>(new ForkliftConfiguration()).TresholdWarning * MaxBatteryCapacity) && !WarningEmailSent)
                 {
+                    WarningEmailSent = true;
                     email.SendBatteryLowEmail();
                 }
             }
