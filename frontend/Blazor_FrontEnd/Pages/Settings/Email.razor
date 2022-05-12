@@ -1,5 +1,11 @@
 ﻿@page "/settings/email"
+
 @using System.ComponentModel.DataAnnotations;
+@using Blazor_FrontEnd.Data;
+
+@implements IDisposable
+@inject EmailsService emailService
+@inject NavigationManager NavManager
 
 <h3>Email adressen</h3>
 
@@ -10,41 +16,71 @@
         </tr>
     </thead>
     <tbody>
-        <!-- add the logic for the data fetching-->
-        @foreach(var addr in Adresses)
+        @if(Emails.Item1 is null)
         {
             <tr>
-                <td>@addr.ToString()</td>
-                <td>remove</td>
+                <td><h5 style="color:firebrick">LOADING...</h5></td>
+            </tr>
+        }else if (parsedEmails.Count > 0)
+        {
+      
+            @foreach (var addr in parsedEmails)
+            {
+                <tr>
+                    <td>@addr</td>
+                    <td @onclick="()=>parsedEmails.RemoveAt(parsedEmails.IndexOf(addr))" >remove</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td><h5 style="color:firebrick">@Emails.Item2</h5></td>
             </tr>
         }
+
     </tbody>
 </table>
 <br />
-<form @onsubmit=@AddToList>
+@if(Emails.Item1 is not null)
+{
+    <form @onsubmit=@AddToTable>
     <label for="emailInput"> Voeg een email toe</label>
-    <input @bind="addedEmail" id="emailInput" @ref="emailInputField_ref"/>
-</form>
+    <input @bind="addedEmail" id="emailInput" />
+    </form>
+}
+
 <br />
 <hr />
 
 
 @code {
-    private string addedEmail;
-    private List<string> Adresses = new();
-    private ElementReference emailInputField_ref;
+    private string? addedEmail;
+    private (List<string>, string?) Emails;
+    private List<string> parsedEmails = new List<string>();
 
-    private void AddToList()
+    private async Task AddToTable()
     {
-        if (!String.IsNullOrWhiteSpace(addedEmail) && !Adresses.Contains(addedEmail))    //  check for doubles and empty strings 
+        if (!String.IsNullOrWhiteSpace(addedEmail) && !parsedEmails.Contains(addedEmail))    //  check for doubles and empty/null strings
         {
-            if(new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
+            if (new EmailAddressAttribute().IsValid(addedEmail)) //  validate email
             {
-                Adresses.Add(addedEmail);  
+                parsedEmails.Add(addedEmail);
             }
-
         }
-        addedEmail = null; 
+        addedEmail = null;
     }
 
+    public void Dispose()   //  gets called when browser is closed or user navigates to a different tab
+    {
+        emailService.UpdateEmails(parsedEmails);  //  store emails
+    }
+
+    //  on initialized page
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        Emails = await Task.Run(() => emailService.GetStoredEmails());  //  fetch emails 
+        parsedEmails = Emails.Item1;
+    }    
 }

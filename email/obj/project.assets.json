@@ -2,10 +2,10 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "MailKit/3.1.0": {
+      "MailKit/3.2.0": {
         "type": "package",
         "dependencies": {
-          "MimeKit": "3.1.0"
+          "MimeKit": "3.2.0"
         },
         "compile": {
           "lib/net5.0/MailKit.dll": {}
@@ -14,7 +14,7 @@
           "lib/net5.0/MailKit.dll": {}
         }
       },
-      "Microsoft.Extensions.Configuration/6.0.0": {
+      "Microsoft.Extensions.Configuration/6.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
@@ -54,7 +54,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "MimeKit/3.1.0": {
+      "MimeKit/3.2.0": {
         "type": "package",
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
@@ -147,7 +147,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MailKit": "3.1.0",
+          "MailKit": "3.1.1",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -160,10 +160,10 @@
     }
   },
   "libraries": {
-    "MailKit/3.1.0": {
-      "sha512": "rTK4aBvNbJ+G+dB3W9C3J9EzdD3rt9A4863zjgnI+I1I//LwIZf83b0RKRZEmBFTScVARXFY25cXjS/7lUKcdg==",
+    "MailKit/3.2.0": {
+      "sha512": "5MTpTqmjqT7HPvYbP3HozRZMth5vSaT0ReN0iM3rAM4CgLI/R1qqtLDDNWGnFFIlcNzeJkZQRJJMkv8cgzWBbA==",
       "type": "package",
-      "path": "mailkit/3.1.0",
+      "path": "mailkit/3.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -171,9 +171,9 @@
         "lib/net452/MailKit.dll",
         "lib/net452/MailKit.pdb",
         "lib/net452/MailKit.xml",
-        "lib/net46/MailKit.dll",
-        "lib/net46/MailKit.pdb",
-        "lib/net46/MailKit.xml",
+        "lib/net461/MailKit.dll",
+        "lib/net461/MailKit.pdb",
+        "lib/net461/MailKit.xml",
         "lib/net47/MailKit.dll",
         "lib/net47/MailKit.pdb",
         "lib/net47/MailKit.xml",
@@ -192,14 +192,14 @@
         "lib/netstandard2.1/MailKit.dll",
         "lib/netstandard2.1/MailKit.pdb",
         "lib/netstandard2.1/MailKit.xml",
-        "mailkit.3.1.0.nupkg.sha512",
+        "mailkit.3.2.0.nupkg.sha512",
         "mailkit.nuspec"
       ]
     },
-    "Microsoft.Extensions.Configuration/6.0.0": {
-      "sha512": "tq2wXyh3fL17EMF2bXgRhU7JrbO3on93MRKYxzz4JzzvuGSA1l0W3GI9/tl8EO89TH+KWEymP7bcFway6z9fXg==",
+    "Microsoft.Extensions.Configuration/6.0.1": {
+      "sha512": "BUyFU9t+HzlSE7ri4B+AQN2BgTgHv/uM82s5ZkgU1BApyzWzIl48nDsG5wR1t0pniNuuyTBzG3qCW8152/NtSw==",
       "type": "package",
-      "path": "microsoft.extensions.configuration/6.0.0",
+      "path": "microsoft.extensions.configuration/6.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -210,7 +210,7 @@
         "lib/net461/Microsoft.Extensions.Configuration.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
-        "microsoft.extensions.configuration.6.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.6.0.1.nupkg.sha512",
         "microsoft.extensions.configuration.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -259,10 +259,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "MimeKit/3.1.0": {
-      "sha512": "ZBx2Mmq+vvDASI59K525hoHOtf9HqsvE5/jBuVSQB6Pwrh8keFHiKtFzKuh/G1Idj0Wr5qJOxxwPtsKJA3K3hA==",
+    "MimeKit/3.2.0": {
+      "sha512": "l9YHMBhBUwY7qQHUp8fw0EvjcbmhN4Iggz6MdjqIShBf42+0nJTa5gu0kuupCOPuiARc9ZaS9c9f0gKz4OnxKw==",
       "type": "package",
-      "path": "mimekit/3.1.0",
+      "path": "mimekit/3.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -270,9 +270,9 @@
         "lib/net452/MimeKit.dll",
         "lib/net452/MimeKit.pdb",
         "lib/net452/MimeKit.xml",
-        "lib/net46/MimeKit.dll",
-        "lib/net46/MimeKit.pdb",
-        "lib/net46/MimeKit.xml",
+        "lib/net461/MimeKit.dll",
+        "lib/net461/MimeKit.pdb",
+        "lib/net461/MimeKit.xml",
         "lib/net47/MimeKit.dll",
         "lib/net47/MimeKit.pdb",
         "lib/net47/MimeKit.xml",
@@ -291,7 +291,7 @@
         "lib/netstandard2.1/MimeKit.dll",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.3.1.0.nupkg.sha512",
+        "mimekit.3.2.0.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },
@@ -522,8 +522,8 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Configurations >= 1.0.0",
-      "MailKit >= 3.1.0",
-      "Microsoft.Extensions.Configuration >= 6.0.0",
+      "MailKit >= 3.2.0",
+      "Microsoft.Extensions.Configuration >= 6.0.1",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -572,11 +572,11 @@
         "dependencies": {
           "MailKit": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "[3.2.0, )"
           },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.0.1, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

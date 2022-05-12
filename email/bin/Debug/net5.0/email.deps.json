@@ -9,26 +9,26 @@
       "email/1.0.0": {
         "dependencies": {
           "Configurations": "1.0.0",
-          "MailKit": "3.1.0",
-          "Microsoft.Extensions.Configuration": "6.0.0",
+          "MailKit": "3.2.0",
+          "Microsoft.Extensions.Configuration": "6.0.1",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "email.dll": {}
         }
       },
-      "MailKit/3.1.0": {
+      "MailKit/3.2.0": {
         "dependencies": {
-          "MimeKit": "3.1.0"
+          "MimeKit": "3.2.0"
         },
         "runtime": {
           "lib/net5.0/MailKit.dll": {
-            "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.1.0.0"
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
           }
         }
       },
-      "Microsoft.Extensions.Configuration/6.0.0": {
+      "Microsoft.Extensions.Configuration/6.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.Primitives": "6.0.0"
@@ -36,7 +36,7 @@
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
+            "fileVersion": "6.0.322.12309"
           }
         }
       },
@@ -62,15 +62,15 @@
           }
         }
       },
-      "MimeKit/3.1.0": {
+      "MimeKit/3.2.0": {
         "dependencies": {
           "Portable.BouncyCastle": "1.9.0",
           "System.Security.Cryptography.Pkcs": "5.0.0"
         },
         "runtime": {
           "lib/net5.0/MimeKit.dll": {
-            "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.1.0.0"
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
           }
         }
       },
@@ -126,7 +126,7 @@
       },
       "Configurations/1.0.0": {
         "dependencies": {
-          "MailKit": "3.1.0",
+          "MailKit": "3.2.0",
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
@@ -141,19 +141,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "MailKit/3.1.0": {
+    "MailKit/3.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rTK4aBvNbJ+G+dB3W9C3J9EzdD3rt9A4863zjgnI+I1I//LwIZf83b0RKRZEmBFTScVARXFY25cXjS/7lUKcdg==",
-      "path": "mailkit/3.1.0",
-      "hashPath": "mailkit.3.1.0.nupkg.sha512"
+      "sha512": "sha512-5MTpTqmjqT7HPvYbP3HozRZMth5vSaT0ReN0iM3rAM4CgLI/R1qqtLDDNWGnFFIlcNzeJkZQRJJMkv8cgzWBbA==",
+      "path": "mailkit/3.2.0",
+      "hashPath": "mailkit.3.2.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Configuration/6.0.0": {
+    "Microsoft.Extensions.Configuration/6.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tq2wXyh3fL17EMF2bXgRhU7JrbO3on93MRKYxzz4JzzvuGSA1l0W3GI9/tl8EO89TH+KWEymP7bcFway6z9fXg==",
-      "path": "microsoft.extensions.configuration/6.0.0",
-      "hashPath": "microsoft.extensions.configuration.6.0.0.nupkg.sha512"
+      "sha512": "sha512-BUyFU9t+HzlSE7ri4B+AQN2BgTgHv/uM82s5ZkgU1BApyzWzIl48nDsG5wR1t0pniNuuyTBzG3qCW8152/NtSw==",
+      "path": "microsoft.extensions.configuration/6.0.1",
+      "hashPath": "microsoft.extensions.configuration.6.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
       "type": "package",
@@ -169,12 +169,12 @@
       "path": "microsoft.extensions.primitives/6.0.0",
       "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
     },
-    "MimeKit/3.1.0": {
+    "MimeKit/3.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZBx2Mmq+vvDASI59K525hoHOtf9HqsvE5/jBuVSQB6Pwrh8keFHiKtFzKuh/G1Idj0Wr5qJOxxwPtsKJA3K3hA==",
-      "path": "mimekit/3.1.0",
-      "hashPath": "mimekit.3.1.0.nupkg.sha512"
+      "sha512": "sha512-l9YHMBhBUwY7qQHUp8fw0EvjcbmhN4Iggz6MdjqIShBf42+0nJTa5gu0kuupCOPuiARc9ZaS9c9f0gKz4OnxKw==",
+      "path": "mimekit/3.2.0",
+      "hashPath": "mimekit.3.2.0.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

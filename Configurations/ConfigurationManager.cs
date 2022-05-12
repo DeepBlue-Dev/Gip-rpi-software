@@ -4,11 +4,29 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Configurations.Storage;
+using MailKit.Net;
 
 namespace Configurations
 {
     public class ConfigurationManager
     {
+        public ConfigurationManager() { 
+            if(!Directory.Exists(StorageConfig.ConfigBasePath))
+            {
+                Directory.CreateDirectory(StorageConfig.ConfigBasePath);
+            }
+        }
+
+        private bool CheckIfConfigurationExists<T>(bool CreateFile,[NotNull] T obj) where T : IParsable, new()
+        {
+            if (!File.Exists(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName))){  //  check if file exists
+                if (!CreateFile) { return false; }  //  programmer said not to create a new file
+                File.Create(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName));    //  create file
+                WriteConfig<T>(obj);    //  write object to file;
+                return true;
+            }
+            return true;
+        }
         //  writes a config to disk, if it doesnt exist, it will make a config file
         public void WriteConfig<T>([NotNull]T obj) where T : IParsable
         {
@@ -16,14 +34,17 @@ namespace Configurations
             File.WriteAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName),parser.ObjectToJson(obj));
         }
         
-        //  TODO, test this function, since this could allow a safer and easier way to read configs from file without fucking names up
-        public T ReadConfig<T>(T obj) where T : IParsable
+        public T ReadConfig<T>([NotNull]T obj) where T : IParsable,new()
         {
-            JsonParser parser = new JsonParser();
-            return parser.JsonToObject<T>(
-                File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)));
+            if (!CheckIfConfigurationExists<T>(true, obj)) { throw new Exception("config file not found"); }    //  check if config exists, if not create file, if that fails generate exception
+            string text = File.ReadAllText(String.Concat(StorageConfig.ConfigBasePath, obj.ConfigurationFileName)); //  fetch contents of file
+            if (text is null or "") { 
+                WriteConfig<T>(new T());
+                return new T();
+            }  //  return new empty instance of T when the config file is not found
+            return new JsonParser().JsonToObjectEX(text, obj);
         }
-
+        
         public T ReadConfig<T>([NotNull] string configurationFileName) where T : IParsable
         {
             JsonParser parser = new JsonParser();

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Configurations;
+
 namespace Blazor_FrontEnd.Data
 {
     public record Emails : IParsable 

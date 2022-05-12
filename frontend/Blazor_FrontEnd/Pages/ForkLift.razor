@@ -1,4 +1,7 @@
 ﻿@page "/Forklift"
+@using Blazor_FrontEnd.Data;
+@using Blazor_FrontEnd.Data.RequestCodes;
+@inject IPCClient backendComm
 
 <h1>Heftruck status</h1>
 <hr />
@@ -29,21 +32,15 @@
 @code {
     private float percentage;
     private bool handbrakeActivated = false;
-
+    private string? handbrakeStatus = null;
+    private string? batteryPercentage = null;
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        percentage = 100F;
-        var timer = new System.Threading.Timer((_) =>
-        {
-            InvokeAsync(async () =>
-            {
-                percentage -= (percentage > 0)?5F:0;   //  create real updater
-                StateHasChanged();  //  re-render the component
-            });
-
-        }, null, 0, 1000);
+        backendComm.StartSynchronous();
+        handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus);
+        batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage);
     }
 
 }

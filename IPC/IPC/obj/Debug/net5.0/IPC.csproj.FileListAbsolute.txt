@@ -1,0 +1,16 @@
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.exe
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.deps.json
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.runtimeconfig.json
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.runtimeconfig.dev.json
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\bin\Debug\net5.0\IPC.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.csproj.AssemblyReference.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.AssemblyInfoInputs.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.AssemblyInfo.cs
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.csproj.CoreCompileInputs.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\refint\IPC.dll
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.pdb
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\IPC.genruntimeconfig.cache
+C:\Users\arthu\Documents\Rider Projects\gip rpi\IPC\IPC\obj\Debug\net5.0\ref\IPC.dll

@@ -1,4 +1,8 @@
 ﻿@page "/settings/connection"
+
+@using Blazor_FrontEnd.Data;
+@inject IPCClient IpcClient
+
 <h3>Verbinding</h3>
 <br />
 <hr />
@@ -14,8 +18,20 @@
        </thead>
        <tbody>
            <tr>
-               <td>@iPEndPoint.Address</td>
-               <td>@iPEndPoint.Port</td>
+                @if(ipAdress is null)
+                {
+                    <td style="color:firebrick">LOADING</td>
+                } else
+                {
+                    <td>@ipAdress</td>
+                }
+                @if(port is null)
+                {
+                    <td style="color:firebrick">LOADING</td>
+                } else
+                {
+                    <td>@port</td>
+                }
            </tr>
        </tbody>
     </table>
@@ -23,7 +39,6 @@
 {
     <h5 style="color:firebrick">Geen actieve verbinding</h5>
 }
-
 
 <br />
 <hr />
@@ -47,4 +62,19 @@
 @code {
     private bool Connected = true;
     private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
+    private string? ipAdress;
+    private string? port;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        IpcClient.Start();
+        IpcClient.SendString("a");
+        ipAdress = await IpcClient.ReadString();
+        port = await IpcClient.ReadString();
+        
+        
+    }
+
 }
