@@ -1,17 +1,20 @@
 ﻿@page "/Forklift"
 @using Blazor_FrontEnd.Data;
 @using Blazor_FrontEnd.Data.RequestCodes;
+@using System.Threading;
+@using NetMQ;
+@using NetMQ.Sockets;
+
 @inject IPCClient backendComm
+@implements IDisposable
 
 <h1>Heftruck status</h1>
 <hr />
 <br />
 <h3>Batterijniveau</h3> 
 <label for="batteryGauge">Resterende lading ( @percentage %): </label>
-<meter style="width:80%;" id="batteryGauge" min="0" max="100" value="@percentage"></meter>
-
+<meter style="width:80%;" id="batteryGauge" min="0" max="100" value=@((int?)(percentage))></meter>
 <hr />
-
 <h3>Handrem</h3>
 <br />
 @if (handbrakeActivated)
@@ -24,23 +27,74 @@
 
 <br />
 <label for="handbrakeToggle">Handrem: </label>
-<input type="checkbox" data-toggle="toggle" data-on="aan" data-off="uit" data-onstyle="success" data-offstyle="danger">
+<input @onclick=ToggleHandbrake type="checkbox" data-toggle="toggle" data-on="aan" data-off="uit" data-onstyle="success" data-offstyle="danger" @bind=handbrakeActivated>
 <hr />
 
 
 
 @code {
-    private float percentage;
+    private float? percentage = null;
     private bool handbrakeActivated = false;
     private string? handbrakeStatus = null;
     private string? batteryPercentage = null;
+    private CancellationTokenSource cancelSource;
+    private RequestSocket client = new RequestSocket();
+
+    private void ToggleHandbrake()
+    {
+        using(var client = new RequestSocket())
+        {
+            client.Connect("tcp://localhost:2100");
+            if (handbrakeActivated)
+            {
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.SetHandbrakeOff) });
+                client.ReceiveFrameBytes();
+                handbrakeActivated = false;
+            } else
+            {
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.SetHandbrakeOn) });
+                client.ReceiveFrameBytes();
+                handbrakeActivated = false;
+            }
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        backendComm.StartSynchronous();
-        handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus);
-        batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage);
+        cancelSource = new CancellationTokenSource();
+        using(var client = new RequestSocket())
+        { 
+            await base.OnInitializedAsync();
+            client.Connect("tcp://localhost:2100");
+            client.SendFrame(new byte[] {Convert.ToByte(RequestCodes.GetHandbrakeStatus)});
+            var response = client.ReceiveFrameString();
+            handbrakeActivated = bool.Parse(response);
+            client.SendFrame(new byte[] {Convert.ToByte(RequestCodes.GetBatteryPercentage)});
+            var response2 = client.ReceiveFrameString();
+            Console.WriteLine(response2);
+            percentage = (float.Parse(response2)/ 10000.0F)*100.0F;
+        }
+
+        /*
+        cancelSource  = new CancellationTokenSource();
+        try
+        {
+            handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus, cancelSource.Token).ConfigureAwait(false);
+            batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage, cancelSource.Token).ConfigureAwait(false);
+            await base.OnInitializedAsync().ConfigureAwait(false);
+        }
+        catch (TaskCanceledException)
+        {
+            Console.WriteLine("canceled on forklift page");
+        }
+        */
     }
 
+
+
+    public void Dispose()
+    {
+        cancelSource.Cancel();
+        cancelSource.Dispose();
+    }
 }

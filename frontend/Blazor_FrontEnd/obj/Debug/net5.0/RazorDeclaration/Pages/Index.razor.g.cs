@@ -82,14 +82,86 @@ using Blazor_FrontEnd.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+using Blazor_FrontEnd.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+using Blazor_FrontEnd.Data.RequestCodes;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+using NetMQ;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+using NetMQ.Sockets;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 22 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Index.razor"
+      
+	private bool Connected = false;
+	private string? response;
+	private CancellationTokenSource tokenSource;
+
+	protected async override Task OnInitializedAsync()
+	{
+		using(var client = new RequestSocket())
+		{
+			client.Connect("tcp://localhost:2100");
+			client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.GetOnlineStatus) });
+			if(client.ReceiveFrameString() == bool.TrueString)
+			{
+				Connected = true;
+			} else
+			{
+				Connected = false;
+			}
+		}
+		await base.OnInitializedAsync();	
+	}
+
+	public void Dispose()
+	{
+		
+		//tokenSource.Dispose();
+	}
+
+	
+	
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPCClient BackendComm { get; set; }
     }
 }
 #pragma warning restore 1591

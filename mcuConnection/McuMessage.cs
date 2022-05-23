@@ -9,7 +9,7 @@ namespace mcuConnection
         public InstructionResponses Response = InstructionResponses.Nop;   //  the message we received from the  µ-c
         public string ErrorResponse = String.Empty; //  the error response, if an error occurred 
         public readonly string Request;    //  the message that was sent
-        private readonly InstructionCodes _opcode = InstructionCodes.Nop;     //  the opcode that was sent
+        private readonly InstructionCodes _opcode = InstructionCodes.nop;     //  the opcode that was sent
         public string ParsedData;
 
         //  Constructor with a string request
@@ -37,7 +37,7 @@ namespace mcuConnection
         //  Convert opcode to char array for the Ascii.GetBytes() function
         public char[] OpCodeToCharArray()
         {
-            if (_opcode is not InstructionCodes.Nop)
+            if (_opcode is not InstructionCodes.nop)
             {
                 return new char[] {Convert.ToChar(_opcode)};
             }
@@ -48,7 +48,7 @@ namespace mcuConnection
         //  override the ToString method to our own liking
         public override string ToString()
         {
-            if (Response is InstructionResponses.Nop && Request is null && _opcode is InstructionCodes.Nop)
+            if (Response is InstructionResponses.Nop && Request is null && _opcode is InstructionCodes.nop)
             {
                 return String.Empty;
             }

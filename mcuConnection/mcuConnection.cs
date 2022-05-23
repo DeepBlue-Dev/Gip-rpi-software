@@ -15,10 +15,10 @@ namespace mcuConnection
         public bool Connected { get; private set; }
         private TcpClient _client;
         private NetworkStream _connection;
-        public readonly (IPAddress ip, int port) _connectionInfo;
+        public readonly (string ip, int port) _connectionInfo;
         
 
-        public McuConnection((IPAddress ip, int port) connInfo)
+        public McuConnection((string ip, int port) connInfo)
         {
             _connectionInfo.ip = connInfo.ip;
             _connectionInfo.port = connInfo.port;
@@ -36,12 +36,14 @@ namespace mcuConnection
             McuConnectionConfig connectionConfig = manager.ReadConfig<McuConnectionConfig>(new McuConnectionConfig());
             if(connectionConfig.McuSocket.ip is null)
             {
-                connectionConfig.McuSocket.ip = (IPAddress.Parse("192.168.140.133"));
-                connectionConfig.McuSocket.port = 1337;
+                connectionConfig.McuSocket.ip = "192.169.1.48";
+                connectionConfig.McuSocket.port = 2000;
             }
             _connectionInfo.ip = connectionConfig.McuSocket.ip;
             _connectionInfo.port = connectionConfig.McuSocket.port;
+            Connect();
         }
+
         public McuMessage Connect()
         {
             McuMessage msg = new McuMessage(InstructionCodes.CreateConnection); //  create object for the response
@@ -57,11 +59,12 @@ namespace mcuConnection
             {
                 if(_client is null)
                 {
+
                     _client = new TcpClient(_connectionInfo.ip.ToString(), _connectionInfo.port);
                     _connection = _client.GetStream();
                 }
                 
-                _connection.Write(Encoding.ASCII.GetBytes(new char[]{Convert.ToChar(InstructionCodes.CreateConnection)}));
+                _connection.WriteByte((byte)InstructionCodes.CreateConnection);
                 var bytes = _connection.Read(respBuffer,0,respBuffer.Length);
 
                 if (bytes > 1)
@@ -72,6 +75,9 @@ namespace mcuConnection
                 } else if (Convert.ToByte(respBuffer[0]) == (byte) InstructionResponses.CreatedConnection)  //  mcu says connection is ok.
                 {
                     msg.Response = InstructionResponses.CreatedConnection;  //  Connection was made
+                } else
+                {
+                    Console.WriteLine($"Debug info: sent value: {Encoding.ASCII.GetBytes(new char[] { Convert.ToChar(InstructionCodes.CreateConnection) })[0]}");
                 }
             }
             catch (Exception e)
@@ -125,14 +131,13 @@ namespace mcuConnection
             {
                 try
                 {
-                    _connection.Write(Encoding.ASCII.GetBytes(msg.OpCodeToCharArray()));
+                    _connection.WriteByte((byte)code);
                     //var bytes = _connection.Read(respBuffer, 0, respBuffer.Length);
+                    msg.Response = (InstructionResponses)Enum.ToObject(typeof(InstructionResponses), Convert.ToByte(_connection.ReadByte()));
                     
                     if (code is InstructionCodes.GetCalibrationResult or InstructionCodes.GetTotalCapacity or InstructionCodes.GetRemainingBatteryCharge)
                     {
-
-                        msg.ParsedData = Receive(); //  TODO verify this, and keep up to date with comm with mcu
-
+                        msg.ParsedData = Receive().Trim('\0'); //  TODO verify this, and keep up to date with comm with mcu
                     }
                 }
                 catch (Exception e)
@@ -143,13 +148,12 @@ namespace mcuConnection
                     throw new Exception(e.ToString());
                 }
                 
-            }
+            } 
             return msg;
         }
 
         public string Receive()
-        {
-           
+        {  
             byte[] respBuffer = new byte[256];
 
             if (_client.Connected)
@@ -164,9 +168,7 @@ namespace mcuConnection
                         responseByte = _connection.ReadByte();
                         respBuffer[index] = Convert.ToByte(responseByte);
                         index++;
-
                     } while (responseByte is not -1 && ((char)responseByte) is not '\0');   //  do not stop reading untill we read a string termination or 'til the end of the stream
-
                     return Encoding.ASCII.GetString(respBuffer);
                 }
                 catch (Exception e)

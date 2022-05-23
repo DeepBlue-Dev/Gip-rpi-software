@@ -1,6 +1,11 @@
 ﻿@page "/settings/connection"
 
 @using Blazor_FrontEnd.Data;
+@using Blazor_FrontEnd.Data.RequestCodes;
+@using System.Threading;
+@using NetMQ;
+@using NetMQ.Sockets;
+@implements IDisposable
 @inject IPCClient IpcClient
 
 <h3>Verbinding</h3>
@@ -8,34 +13,37 @@
 <hr />
 @if (Connected)
 {
-   <h5>Actieve Verbinding</h5>
-   <table class="table">
-       <thead>
-           <tr>
-               <th>ip adres</th>
-               <th>poortnummer</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr>
-                @if(ipAdress is null)
+    <h5>Actieve Verbinding</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ip adres</th>
+                <th>poortnummer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if (ipAdress is null)
                 {
                     <td style="color:firebrick">LOADING</td>
-                } else
+                }
+                else
                 {
                     <td>@ipAdress</td>
                 }
-                @if(port is null)
+                @if (port is null)
                 {
                     <td style="color:firebrick">LOADING</td>
-                } else
+                }
+                else
                 {
                     <td>@port</td>
                 }
-           </tr>
-       </tbody>
+            </tr>
+        </tbody>
     </table>
-} else
+}
+else
 {
     <h5 style="color:firebrick">Geen actieve verbinding</h5>
 }
@@ -44,37 +52,66 @@
 <hr />
 <h5>Opgeslagen verbindingen</h5>
 <table class="table">
-       <thead>
-           <tr>
-               <th>ip adres</th>
-               <th>poortnummer</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr>
-               <td>@iPEndPoint.Address</td>
-               <td>@iPEndPoint.Port</td>
-           </tr>
-       </tbody>
-    </table>
+    <thead>
+        <tr>
+            <th>ip adres</th>
+            <th>poortnummer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@iPEndPoint.Address</td>
+            <td>@iPEndPoint.Port</td>
+        </tr>
+    </tbody>
+</table>
 <br />
 <hr />
 @code {
     private bool Connected = true;
-    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
-    private string? ipAdress;
-    private string? port;
+    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"), 420);
+    private string? ipAdress = null;
+    private string? port = null;
+    private CancellationTokenSource tokenSource;
 
 
     protected async override Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        IpcClient.Start();
-        IpcClient.SendString("a");
-        ipAdress = await IpcClient.ReadString();
-        port = await IpcClient.ReadString();
-        
-        
+        if (tokenSource is null || tokenSource.IsCancellationRequested)
+        {
+            tokenSource = new CancellationTokenSource();   //  reset the token
+        }
+
+        try
+        {
+            tokenSource = new CancellationTokenSource();
+            using (var client = new RequestSocket())
+            {
+                await base.OnInitializedAsync();
+                client.Connect("tcp://localhost:2100");
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.GetSocketData) });
+                var response = client.ReceiveFrameString();
+
+                if (response is not null)
+                {
+                    ipAdress = response.Split(':')[0];
+                    port = response.Split(':')[1];
+                }
+
+                await base.OnInitializedAsync();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            Console.WriteLine("cancelled on connection page");
+        }
+
+    }
+
+    public void Dispose()
+    {
+        tokenSource.Cancel();
+        tokenSource.Dispose();
     }
 
 }

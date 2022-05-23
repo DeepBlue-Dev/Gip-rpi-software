@@ -9,7 +9,7 @@ namespace tcpFunctionsTesting
         static void Main(string[] args)
         {
             McuConnection connection =
-                new McuConnection((IPAddress.Parse("192.168.140.121"), 2000));
+                new McuConnection(("192.168.140.121", 2000));
             var resp = connection.Connect();
             if (resp.Response == InstructionResponses.CreatedConnection)
             {

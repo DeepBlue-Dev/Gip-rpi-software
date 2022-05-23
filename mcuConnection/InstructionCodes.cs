@@ -4,19 +4,19 @@ namespace mcuConnection
     [Flags]
     public enum InstructionCodes:byte
     {
-        Nop,
-        CreateConnection,
-        CloseConnection,
-        SendDataFromMemory,
-        UnlockHandBrake,
-        LockHandBrake,
-        StartCalibration,
-        StopCalibration ,
-        GetCalibrationResult,
-        GetTotalCapacity,
-        GetRemainingBatteryCharge,
+		nop,
+		CreateConnection,
+		CloseConnection,
+		SendDataFromMemory,
+		UnlockHandbrake,
+		LockHandbrake,
+		StartCalibration,
+		StopCalibration,
+		GetCalibrationResult,
+		GetTotalCapacity,
+		GetRemainingBatteryCharge,
 
-    }
+	}
 
    
 }

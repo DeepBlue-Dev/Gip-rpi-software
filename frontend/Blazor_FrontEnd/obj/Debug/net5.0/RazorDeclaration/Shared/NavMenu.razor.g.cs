@@ -96,9 +96,10 @@ using Blazor_FrontEnd.Shared;
     private bool collapseSubNav = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
+    private Task ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+        return Task.CompletedTask;
     }
 
 

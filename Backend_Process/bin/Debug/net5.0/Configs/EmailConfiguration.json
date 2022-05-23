@@ -1,1 +1,1 @@
-{"Recipients":[],"Sender":null,"MailServer":"smtp.gmail.com","MailServerPort":587,"UseSecureSocketOptions":false,"ConfigurationFileName":"EmailConfiguration.json"}
+{"Recipients":[],"Sender":"baykor.service@gmail.com","MailServer":"smtp.gmail.com","MailServerPort":587,"UseSecureSocketOptions":false,"ConfigurationFileName":"EmailConfiguration.json"}

@@ -96,8 +96,29 @@ using Blazor_FrontEnd.Data.RequestCodes;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+using NetMQ;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+using NetMQ.Sockets;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Forklift")]
-    public partial class ForkLift : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class ForkLift : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,21 +126,72 @@ using Blazor_FrontEnd.Data.RequestCodes;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
+#line 35 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\ForkLift.razor"
        
-    private float percentage;
+    private float? percentage = null;
     private bool handbrakeActivated = false;
     private string? handbrakeStatus = null;
     private string? batteryPercentage = null;
+    private CancellationTokenSource cancelSource;
+    private RequestSocket client = new RequestSocket();
+
+    private void ToggleHandbrake()
+    {
+        using(var client = new RequestSocket())
+        {
+            client.Connect("tcp://localhost:2100");
+            if (handbrakeActivated)
+            {
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.SetHandbrakeOff) });
+                client.ReceiveFrameBytes();
+                handbrakeActivated = false;
+            } else
+            {
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.SetHandbrakeOn) });
+                client.ReceiveFrameBytes();
+                handbrakeActivated = false;
+            }
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        backendComm.StartSynchronous();
-        handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus);
-        batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage);
+        cancelSource = new CancellationTokenSource();
+        using(var client = new RequestSocket())
+        { 
+            await base.OnInitializedAsync();
+            client.Connect("tcp://localhost:2100");
+            client.SendFrame(new byte[] {Convert.ToByte(RequestCodes.GetHandbrakeStatus)});
+            var response = client.ReceiveFrameString();
+            handbrakeActivated = bool.Parse(response);
+            client.SendFrame(new byte[] {Convert.ToByte(RequestCodes.GetBatteryPercentage)});
+            var response2 = client.ReceiveFrameString();
+            Console.WriteLine(response2);
+            percentage = (float.Parse(response2)/ 10000.0F)*100.0F;
+        }
+
+        /*
+        cancelSource  = new CancellationTokenSource();
+        try
+        {
+            handbrakeStatus = await backendComm.SendCode(RequestCodes.GetHandbrakeStatus, cancelSource.Token).ConfigureAwait(false);
+            batteryPercentage = await backendComm.SendCode(RequestCodes.GetBatteryPercentage, cancelSource.Token).ConfigureAwait(false);
+            await base.OnInitializedAsync().ConfigureAwait(false);
+        }
+        catch (TaskCanceledException)
+        {
+            Console.WriteLine("canceled on forklift page");
+        }
+        */
     }
 
+
+
+    public void Dispose()
+    {
+        cancelSource.Cancel();
+        cancelSource.Dispose();
+    }
 
 #line default
 #line hidden

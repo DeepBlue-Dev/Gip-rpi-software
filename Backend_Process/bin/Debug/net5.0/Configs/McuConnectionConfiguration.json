@@ -1,1 +1,1 @@
-{"McuSocket":{"Item1":null,"Item2":0},"EndpointName":null,"ConfigurationFileName":"McuConnectionConfiguration.json"}
+{"McuSocket":{"Item1":"192.168.1.48","Item2":2000},"EndpointName":null,"ConfigurationFileName":"McuConnectionConfiguration.json"}

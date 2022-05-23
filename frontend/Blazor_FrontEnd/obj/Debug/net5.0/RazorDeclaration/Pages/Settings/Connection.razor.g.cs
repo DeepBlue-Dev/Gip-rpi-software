@@ -89,8 +89,36 @@ using Blazor_FrontEnd.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+using Blazor_FrontEnd.Data.RequestCodes;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+using NetMQ;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+using NetMQ.Sockets;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/settings/connection")]
-    public partial class Connection : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Connection : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,23 +126,52 @@ using Blazor_FrontEnd.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 62 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
+#line 70 "C:\Users\arthu\Documents\Rider Projects\gip rpi\frontend\Blazor_FrontEnd\Pages\Settings\Connection.razor"
        
     private bool Connected = true;
-    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"),420);
-    private string? ipAdress;
-    private string? port;
+    private System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse("192.168.140.69"), 420);
+    private string? ipAdress = null;
+    private string? port = null;
+    private CancellationTokenSource tokenSource;
 
 
     protected async override Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        IpcClient.Start();
-        IpcClient.SendString("a");
-        ipAdress = await IpcClient.ReadString();
-        port = await IpcClient.ReadString();
-        
-        
+        if (tokenSource is null || tokenSource.IsCancellationRequested)
+        {
+            tokenSource = new CancellationTokenSource();   //  reset the token
+        }
+
+        try
+        {
+            tokenSource = new CancellationTokenSource();
+            using (var client = new RequestSocket())
+            {
+                await base.OnInitializedAsync();
+                client.Connect("tcp://localhost:2100");
+                client.SendFrame(new byte[] { Convert.ToByte(RequestCodes.GetSocketData) });
+                var response = client.ReceiveFrameString();
+
+                if (response is not null)
+                {
+                    ipAdress = response.Split(':')[0];
+                    port = response.Split(':')[1];
+                }
+
+                await base.OnInitializedAsync();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            Console.WriteLine("cancelled on connection page");
+        }
+
+    }
+
+    public void Dispose()
+    {
+        tokenSource.Cancel();
+        tokenSource.Dispose();
     }
 
 
